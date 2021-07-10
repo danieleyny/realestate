@@ -92,13 +92,14 @@ p{
     color: crimson;
 }
 /* Hero Section */
-#hero {
+.bckimg{
     background-image: url(https://media.timeout.com/images/105403910/image.jpg);
     background-size: cover;
     background-position: top center;
     position: relative;
     z-index: 1;
 }
+
 
 
 #hero::after{
