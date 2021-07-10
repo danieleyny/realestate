@@ -841,11 +841,5 @@ p{
 
 
 /*  Media Query For Desktop*/
-@media only sreen and (min-width: 1200px;){
-    #services .service-bottom .service-item{
-        flex-basis: 22%;
-        margin: 1.5%;
-    }
-}
 
 /*  End Media Query For Desktop*/
