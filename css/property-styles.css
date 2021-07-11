@@ -535,7 +535,7 @@ header ul li a:hover, header ul li a.active {
 }
 
 #property-info-details .flex label .fa {
-  color: #00aeef;
+  color: black;
   margin-right: 5px;
   position: relative;
   top: 2px;
