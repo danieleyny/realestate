@@ -271,10 +271,20 @@ header ul li a:hover, header ul li a.active {
 #property-image-slider .slick-slide img {
   height: 450px;
   opacity: 0.75;
-  filter: blur(2px);
+  filter: blur(4px);
+}
+
+#property-image-slider .slick-slide video {
+  opacity: 0.75;
+  filter: blur(4px);
 }
 
 #property-image-slider .slick-slide.slick-center img {
+  opacity: 1;
+  filter: blur(0);
+}
+
+#property-image-slider .slick-slide.slick-center video {
   opacity: 1;
   filter: blur(0);
 }
@@ -316,6 +326,11 @@ header ul li a:hover, header ul li a.active {
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.frontscreenvideo {
+  width:370px;
+  height:450px;
 }
 
 .slider-options-container .image-fade:hover {
@@ -929,9 +944,13 @@ footer small a:hover {
   #property-image-slider .slick-prev, #property-image-slider .slick-next {
     display: none !important;
   }
-  #property-image-slider .slick-slide img,
+  #property-image-slider .slick-slide img, 
   #map, #street {
     height: 390px;
+  }
+  .frontscreenvideo {
+    height: 390px;
+    width:320px;
   }
   .slider-options-container .image-fade span {
     font-size: 1rem;
@@ -1040,6 +1059,10 @@ footer small a:hover {
   #map, #street {
     height: 330px;
   }
+  .frontscreenvideo {
+    height: 330px;
+    width:290px;
+  }
   .slider-options-container .image-fade span {
     bottom: 0.25rem;
     font-size: 0.85rem;
@@ -1062,6 +1085,10 @@ footer small a:hover {
   #property-image-slider .slick-slide img,
   #map, #street {
     height: 290px;
+  }
+  .frontscreenvideo {
+    height: 290px;
+    width:245px;
   }
   #properties-slider a.slick-arrow {
     top: -40px;
@@ -1090,6 +1117,10 @@ footer small a:hover {
   #property-image-slider .slick-slide img,
   #map, #street {
     height: 245px;
+  }
+  .frontscreenvideo {
+    height: 245px;
+    width:200px;
   }
   .walk-score-container strong {
     flex-basis: 120px;
