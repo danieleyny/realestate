@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>214 West 101St Apt 2B - TAL Company Inc</title>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link href="css/property-styles.css" type="text/css" rel="Stylesheet" />
+  <link rel="shortcut icon" href="images/SYNLogo.png"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/95dc93da07.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+
+<body>
+  <main>
+    <header>
+      <div class="flex container">
+        <a id="logo">TAL Company</a>
+        <nav>
+          <button id="nav-toggle" class="hamburger-menu">
+            <span class="strip"></span>
+            <span class="strip"></span>
+            <span class="strip"></span>
+          </button>
+
+          <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
+            <li id="close-flyout"><span class="fas fa-times"></span></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="main-property">
+      <div id="property-details" class="flex container">
+        <div class="address-container flex">
+          <div class="home-icon">
+            <span class="fa fa-home"></span>
+          </div>
+          <div>
+            <address>
+              <strong>214 West 102 Street, Apt 2B</strong>
+              <small>New York, NY, 10025</small>
+            </address>
+            <small class="status"><span class="for-sale"></span> Available</small>
+          </div>
+          <small class="year-built-sm">Built: 1999 - Listed On TAL Company: 9 days</small>
+        </div>
+
+        <div class="property-stats-container flex">
+          <div class="price">
+            <div class="padded-inner-container">
+              <strong>$2,000 /Month</strong>
+              <small>Listed at Price</small>
+            </div>
+          </div>
+          <div class="beds">
+            <div class="padded-inner-container">
+              <strong>2</strong>
+              <small>Beds</small>
+            </div>
+          </div>
+          <div class="baths">
+            <div class="padded-inner-container">
+              <strong>1</strong>
+              <small>Baths</small>
+            </div>
+          </div>
+          <div class="sqft">
+            <div class="padded-inner-container">
+              <strong>550 <small>Sq. Ft.</small></strong>
+              <small> $3.6/ Sq. Ft.</small>
+            </div>
+          </div>
+          <small class="year-built">Built: 1925 - Listed On TAL Company: 9 days</small>
+        </div>
+
+        
+        </div>
+      </div>
+
+      <!-- Start: image slider -->
+      <div id="property-image-slider" class="slick">
+      
+        <div>
+          <img src="images/214Apt2B2.jpeg" alt="214 West 102 Street Apt 2B" />
+        </div>
+        <div>
+          <img src="images/214Apt2B3.jpeg" alt="214 West 102 Street Apt 2B" />
+        </div>
+        <div>
+          <img src="images/214Apt2B4.jpeg" alt="214 West 102 Street Apt 2B" />
+        </div>
+        <div>
+          <img src="images/214Apt2B5.jpeg" alt="214 West 102 Street Apt 2B" />
+        </div>
+        <div>
+          <img src="images/214Apt2B6.jpeg" alt="214 West 102 Street Apt 2B" />
+        </div>
+        <!-- <div>
+          <video class="frontscreenvideo" controls>
+            <source src="images/Video214Apt2B.mp4" type="video/mp4">
+          </video>        
+        </div> -->
+      </div>
+      <!-- End: image slider -->
+
+      <!-- Start: map -->
+      <div id="map"></div>
+      <!-- End: map -->
+
+      <!-- Start: street view -->
+      <div id="street"></div>
+      <!-- End: street view -->
+
+      <div class="slider-options-container flex">
+        <a id="image-view" href="javascript:;">
+          <div class="image-fade"><span>Images</span></div>
+          <img src="images/image-view.jpg" alt="Show Images" />
+        </a>
+
+        <a href="https://www.google.com/maps/place/214+W+102nd+St,+New+York,+NY+10025/@40.79808,-73.9707055,17z/data=!3m1!4b1!4m5!3m4!1s0x89c2f625d2659b97:0x3327ae451a6e986a!8m2!3d40.79808!4d-73.9685168">
+          <div class="image-fade"><span>Map</span></div>
+          <img src="images/map-view.jpg" alt="Show Map View" />
+        </a>
+
+        <a href="https://www.google.com/maps/place/214+W+102nd+St,+New+York,+NY+10025/@40.7982589,-73.9684765,3a,75y,185.22h,99.65t/data=!3m6!1e1!3m4!1soTQIr49uKhTVlc7oQmrSbQ!2e0!7i16384!8i8192!4m7!3m6!1s0x89c2f625d2659b97:0x3327ae451a6e986a!8m2!3d40.79808!4d-73.9685168!14m1!1BCgIgAQ">
+          <div class="image-fade"><span>Street View</span></div>
+          <img src="images/street-view.jpg" alt="Show Street View" />
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <section id="property-description">
+    <div class="flex container">
+      <div class="description">
+        <h3>Overview</h3>
+        <p>
+          VERY RARE, HIDDEN GEM IN THE HEART OF THE CITY.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui impedit, obcaecati temporibus assumenda at,
+          magni dolorum, culpa quasi voluptas tempore autem praesentium repellat enim a repellendus earum ab nam nihil.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui impedit, obcaecati temporibus assumenda at,
+          magni dolorum, culpa quasi voluptas tempore autem praesentium repellat enim a repellendus earum ab nam nihil.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui impedit, obcaecati temporibus assumenda at,
+          magni dolorum, culpa quasi voluptas tempore autem praesentium repellat enim a repellendus earum ab nam nihil.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui impedit, obcaecati temporibus assumenda at,
+          magni dolorum, culpa quasi voluptas tempore autem praesentium repellat enim a repellendus earum ab nam nihil.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui impedit, obcaecati temporibus assumenda at,
+          magni dolorum, culpa quasi voluptas tempore autem praesentium repellat enim a repellendus earum ab nam nihil.
+        </p>
+      </div>
+
+      <div class="listed-by-container">
+        <h3>Listed By</h3>
+        <img src="images/danieleynyprofilepic.jpeg" alt="Listing Agent Stuart Redman" />
+        <div>
+          <a href="#">Daniel Eyny</a> - TAL Company Inc.
+          <small>CEO of Decrous</small>
+        </div>
+        <button id="ask-a-question">Ask a Question</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="property-info" class="container">
+    <div class="price-insights">
+      <h3>Price Insights</h3>
+      <div class="flex">
+        <div>
+          <label>Est. Mo. Payment :</label>
+          <strong>$2,000</strong>
+        </div>
+
+        <div>
+          <label>Price/Sq.Ft. :</label>
+          <strong>$3.6</strong>
+        </div>
+
+        <div>
+          <label>Buyer's Brokerage Fee :</label>
+          <strong>None!</strong>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="home-facts">
+      <h3>Home Facts</h3>
+      <div class="flex">
+        <div>
+          <label>Status :</label>
+          <strong>Available For Rent</strong>
+        </div>
+
+        <div>
+          <label>Rooms :</label>
+          <strong>3</strong>
+        </div>
+
+        <div>
+            <label>Closets :</label>
+            <strong>3</strong>
+          </div>  
+
+        <div>
+          <label>Time on TAL Company :</label>
+          <strong>9 days</strong>
+        </div>
+
+        <div>
+          <label>Year Built :</label>
+          <strong>1925</strong>
+        </div>
+
+        <div>
+          <label>Community :</label>
+          <strong>New York City - UWS</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="embedded-map">
+    <div id="google-maps"></div>
+  </section>
+
+  <section id="nearby-similar-homes">
+    <div class="container">
+      <h2>Available Apartments</h2>
+      <div id="properties-slider" class="slick">
+        <a href="214Apt5D.html">
+          <img src="images/214Apt5D2.jpeg" alt="Near By Property 1" />
+          <div class="property-details">
+            <p class="price">$1,900</p>
+            <span class="beds">1 Bedroom</span>
+            <span class="baths">1 Bath</span>
+            <span class="sqft">200 sqft.</span>
+            <address>
+              214 West 102 Street, Apt 5D, NY, New York, 10025
+            </address>
+          </div>
+        </a>
+
+        <a href="214Apt3B.html">
+          <img src="images/214Apt3B.jpeg" alt="Near By Property 2" />
+          <div class="property-details">
+            <p class="price">$2,400</p>
+            <span class="beds">2 Bedroom</span>
+            <span class="baths">1 Bath</span>
+            <span class="sqft">550 sqft.</span>
+            <address>
+              214 West 102 Street, Apt 3B, NY, New York, 10025
+            </address>
+          </div>
+        </a>
+
+        <a href="214Apt5B.html">
+          <img src="images/214Apt5B.jpeg" alt="Near By Property 3" />
+          <div class="property-details">
+            <p class="price">$2,250</p>
+            <span class="beds">2 Bedroom</span>
+            <span class="baths">1 Bath</span>
+            <span class="sqft">550 sqft.</span>
+            <address>
+              214 West 102 Street, Apt 5B, NY, New York, 10025            </address>
+          </div>
+        </a>
+
+        <a href="214Apt4D.html">
+          <img src="images/backphoto.jpeg" alt="Near By Property 5" />
+          <div class="property-details">
+            <p class="price">$3,400,000</p>
+            <span class="beds">1 Bedroom</span>
+            <span class="baths">1 Bath</span>
+            <span class="sqft">200 sqft.</span>
+            <address>
+                214 West 102 Street, Apt 4D, NY, New York, 10025
+            </address>
+          </div>
+        </a>
+
+        <a href="214Apt3D.html">
+            <img src="images/214Apt3D2.jpeg" alt="Near By Property 4" />
+            <div class="property-details">
+              <p class="price">$1,600</p>
+              <span class="beds">1 Bedroom</span>
+              <span class="baths">1 Bath</span>
+              <span class="sqft">200 sqft.</span>
+              <address>
+                 214 West 102 Street, Apt 3D, NY, New York, 10025
+              </address>
+            </div>
+          </a>
+
+          <a href="214Apt2D.html">
+            <img src="images/backphoto.jpeg" alt="Near By Property 4" />
+            <div class="property-details">
+              <p class="price">$2,400</p>
+              <span class="beds">1 Bedroom</span>
+              <span class="baths">1 Bath</span>
+              <span class="sqft">200 sqft.</span>
+              <address>
+                 214 West 102 Street, Apt 2D, NY, New York, 10025
+              </address>
+            </div>
+          </a>
+
+          <a href="214Apt1D.html">
+            <img src="images/backphoto.jpeg" alt="Near By Property 4" />
+            <div class="property-details">
+              <p class="price">$2,400</p>
+              <span class="beds">1 Bedroom</span>
+              <span class="baths">1 Bath</span>
+              <span class="sqft">200 sqft.</span>
+              <address>
+                 214 West 102 Street, Apt 1D, NY, New York, 10025
+              </address>
+            </div>
+          </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="property-info-details">
+    <div class="container">
+      <h2>Property Details for 214 West 102 Street</h2>
+
+      <div class="flex main-details">
+        <div>
+          <label><span class="fa fa-home"></span> Type:</label>
+          <span>Brownstone - Walk Up</span>
+        </div>
+
+        <div>
+          <label><span class="fa fa-car"></span> Parking:</label>
+          <span>None</span>
+        </div>
+        <div>
+          <label><span class="fa fa-thermometer-full"></span> Heating:</label>
+          <span>Gas/Electric</span>
+        </div>
+        <div>
+          <label><img class="fa" src="https://img.icons8.com/glyph-neue/64/000000/washing-machine.png"/> Washer/Dryer:</label>
+          <span>None</span>
+        </div>
+        <div>
+          <label><img class="fa" src="https://img.icons8.com/pastel-glyph/64/000000/doorman--v2.png"/> Doorman:</label>
+          <span>No</span>
+        </div>
+        <div>
+          <label><img class="fa" src="https://img.icons8.com/ios-filled/100/000000/elevator-doors.png"/> Elevator:</label>
+          <span>No</span>
+        </div>
+      </div>
+
+      <h3>Interior details</h3>
+      <div class="flex">
+        <div>
+          <strong>Bedrooms and bathrooms</strong>
+          <ul>
+            <li>Bedrooms: 1</li>
+            <li>Full bathrooms: 1</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong>Appliances</strong>
+          <ul>
+            <li>Appliances included: Refrigerator, Freezer, Oven, Stove, Garbage disposal, Microwave, Dishwasher</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong>Basement</strong>
+          <ul>
+            <li>None</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong>Flooring</strong>
+          <ul>
+            <li>Flooring: Hardwood/Marble</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong>Elevator</strong>
+          <ul>
+            <li>No</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong>Other interior features</strong>
+          <ul>
+            <li>2 closets</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Building Details</h3>
+      <div class="flex">
+
+        <div>
+          <strong>Property</strong>
+          <ul>
+            <li>Stories: 5</li>
+            <li>Building Type: Brownstone - Walk Up</li>
+            <li>Exterior features: Brick</li>
+            <li>Fire Escape: Yes</li>
+            <li>Intercom System: Yes</li>
+            <li>Building Built: 1925</li>
+            <li>New construction: No (All apartment's refurnished in 2021)</li>
+          </ul>
+        </div>
+
+        <div>
+          <strong>Transportation</strong>
+          <ul>
+            <li>2 Blocks From 1 Train</li>
+            <li>6 Blocks From 2, and 3 Train</li>
+            <li>1 Block From M7, M11, and M104 Bus's</li>
+            <li>3 avenues From B, and C Train</li>
+            <li>Parking Garage 1 block Away</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--
+  <section id="price-history">
+    <div class="container">
+      <h3>Price History</h3>
+
+      <div class="price-history-container">
+        <div class="flex header-row">
+          <span>DATE</span>
+          <span>EVENT</span>
+          <span>PRICE</span>
+        </div>
+
+        <div class="flex">
+          <span>6/26/2020</span>
+          <span>Price change</span>
+          <span>$1,230,000 <i class="price-change decrease">(-3.6%)</i></span>
+        </div>
+
+        <div class="flex">
+          <span>6/19/2020</span>
+          <span>Listed for sale</span>
+          <span>$1,275,000 <i class="price-change increase">(+28.6%)</i></span>
+        </div>
+
+        <div class="flex">
+          <span>4/11/2015</span>
+          <span>Sold</span>
+          <span>$910,000</span>
+        </div>
+
+        <div class="flex">
+          <span>1/29/2015</span>
+          <span>Price change</span>
+          <span>$910,000 <i class="price-change decrease">(-4.2%)</i></span>
+        </div>
+
+        <div class="flex">
+          <span>11/19/2014</span>
+          <span>Listed for sale</span>
+          <span>$950,000</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <section id="neighborhood">
+    <div class="container">
+      <h2>Neighborhood</h2>
+
+      <div class="walk-score-container">
+        <div>
+          <span class="fa fa-walking"></span>
+          <strong>Walk Score:</strong> <a href="#">95</a>/100 <i>(Not Car-Dependent)</i>
+        </div>
+        <div>
+          <span class="fa fa-bus"></span>
+          <strong>Transit Score:</strong> <a href="#">90</a>/100 <i>(A Lot Of Transit)</i>
+        </div>
+      </div>
+
+      <h3>Schools</h3>
+
+      <div class="school-ratings-container">
+      <div>
+        <div class="school-info">
+        <div ><img class="rating" src="images/columbialogo.jpeg" alt="school logo" /></div>
+          <div><a href="https://www.columbia.edu/">Columbia University</a></div>
+          <span>Grades: <strong>College</strong></span>
+          <br>
+          <span>Distance: <strong>0.6 mi</strong></span>
+        </div>
+      </div>
+
+      <div>
+        <div class="school-info">
+        <div class="rating"><img class="rating" src="images/barnardlogo.jpeg" alt="school logo" /></div>
+          <div><a href="https://barnard.edu/">Barnard College</a></div>
+          <span>Grades: <strong>College</strong></span>
+          <br>
+          <span>Distance: <strong>0.7 mi</strong></span>
+        </div>
+      </div>
+
+       
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Form</h2>
+
+      <div id="form-container">
+        <h3>Contact</h3>
+        <form action="https://formspree.io/f/mgerlelb" method="POST">
+
+          <label for="Name">Name</label>
+          <input name="Name" type="text" id="name" />
+
+          <label for="Email">Email</label>
+          <input name="Email" type="email" id="email" required/>
+
+          <label for="Phone">Phone</label>
+          <input name="Phone Number" type="number" id="phone" />
+
+          <label for="Message">Message</label>
+          <textarea name="Message" id="message"></textarea>
+
+          <button class="rounded">Contact Management</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="flex container">
+      <div class="footer-about">
+        <h5>About TAL Company Inc.</h5>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem.
+          Amet aliquid nesciunt veritatis aliquam.</p>
+      </div>
+
+      <div class="footer-quick-links">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-subscribe">
+        
+
+        <h5 class="follow-us">Follow Us</h5>
+        <ul>
+          <li><a href="https://www.facebook.com/daniel.eyny"><span class="fab fa-facebook-f"></span></a></li>
+          <li><a href="https://www.instagram.com/danieleyny/?hl=en"><span class="fab fa-instagram"></span></a></li>
+          <li><a href="https://www.linkedin.com/in/daniel-eyny"><span class="fab fa-linkedin-in"></span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <small>
+      Copyright &copy; 2021 All rights reserved | TAL Company Inc.
+    </small>
+  </footer>
+</body>
+
+<script src="js/script.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoLg9yybMxHmgFNPKuuL9OdDk2dAVr3E8&callback=initMap"></script>
+
+
+</html>

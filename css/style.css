@@ -1,4 +1,5 @@
 @import url('href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"');
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap');
 * {
     padding: 0;
     margin: 0;
@@ -114,6 +115,10 @@ p{
     background-color: black;
     opacity: .4;
     z-index: -1;
+}
+
+.talfont {
+    font-family: 'STIX Two Math', serif;
 }
 
 #hero2 {
