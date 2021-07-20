@@ -11,6 +11,10 @@
 html {
     font-size: 10px;
     font-family: 'Montserrat', sans-serif;
+    background: url(https://media.timeout.com/images/105403910/image.jpg)no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
 }
 
 a{
@@ -96,9 +100,7 @@ p{
 }
 /* Hero Section */
 .bckimg{
-    background-image: url(https://media.timeout.com/images/105403910/image.jpg);
-    background-size: cover;
-    background-position: top center;
+    
     position: relative;
     z-index: 1;
 }
