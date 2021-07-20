@@ -11,10 +11,7 @@
 html {
     font-size: 10px;
     font-family: 'Montserrat', sans-serif;
-    background: url(https://media.timeout.com/images/105403910/image.jpg)no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
+    
     
 }
 
@@ -102,6 +99,10 @@ p{
 }
 /* Hero Section */
 .bckimg{
+    background: url(https://media.timeout.com/images/105403910/image.jpg)no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
     position: relative;
     z-index: 1;
 }
@@ -110,7 +111,7 @@ p{
 
 #hero::after{
     content: '';
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     height: 100%;
