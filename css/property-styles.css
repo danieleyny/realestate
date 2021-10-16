@@ -203,6 +203,17 @@ header ul li a:hover, header ul li a.active {
   font-style: normal;
   line-height: 1.1;
 }
+#property-details .status3 .for-sale {
+  display: inline-block;
+  background: rgb(245, 10, 10);
+  border-radius: 20px;
+  width: 15px;
+  height: 15px;
+  margin-right: 1px;
+  position: relative;
+  top: 3px;
+}
+
 #property-details .status2 .for-sale {
   display: inline-block;
   background: orange;
