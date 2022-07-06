@@ -17,6 +17,10 @@
 </head>
 
 <body>
+
+  <div id="pageloader"></div>
+
+ 
   <main>
     <header>
       <div class="flex container">
@@ -334,10 +338,26 @@
       Copyright &copy; 2021 All rights reserved | TAL Company Inc.
     </small>
   </footer>
-</body>
+
+
+
+
+  <script>
+    var loader = document.getElementById("pageloader");
+  
+    window.addEventListener("load", function(){
+      loader.style.display = "none";
+    })
+  </script>
+
+
 
 <script src="js/script.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoLg9yybMxHmgFNPKuuL9OdDk2dAVr3E8&callback=initMap"></script>
+
+
+</body>
+
 
 
 </html>

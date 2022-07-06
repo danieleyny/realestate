@@ -75,6 +75,17 @@ p {
   margin: 0 0 1rem;
 }
 
+/* Page Loader */
+#pageloader {
+  background: #fff url(../images/realestateloader.gif) no-repeat center center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  background-size: 80%;
+  
+}
+
 button.rounded {
   background: #00aeef;
   border: none;
