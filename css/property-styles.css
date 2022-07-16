@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=El+Messiri&family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
 /* start: global styles */
 
 body {
@@ -38,8 +42,8 @@ h1, h2, h3, h4, h5 {
 }
 
 h1, h2 {
-  font-family: "Playfair Display", serif;
-  font-weight: 800;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 500;
   line-height: 1.2;
 }
 
@@ -104,7 +108,7 @@ section {
 /* start: header styles */
 
 main {
-  padding-top: 72px;
+  padding-top: 35px;
 }
 
 header {
@@ -213,7 +217,9 @@ margin: 0px 5px 0px 5px;
   body{
       overflow-x: hidden;
   }
-  
+  main {
+    padding-top: 72px;
+}
 
   .nav-links a{
       color: black;
@@ -683,6 +689,7 @@ margin: 0px 5px 0px 5px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
+  align-items: flex-end;
 }
 
 #property-info-details .flex label {
@@ -980,6 +987,10 @@ margin: 0px 5px 0px 5px;
 .message__img {
   width: 200px;
   justify-self: center;
+}
+.message__img:hover {
+  transform: scale(1.30);
+  transition: .8s;
 }
 
 
@@ -1609,7 +1620,7 @@ margin: 0px 5px 0px 5px;
   height: 100%;
   width: 100%;
   background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  opacity: .8;
+  opacity: .9;
   z-index: -1;
 }
 
