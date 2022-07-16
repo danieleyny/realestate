@@ -888,8 +888,148 @@ margin: 0px 5px 0px 5px;
   margin-bottom: 2rem;
   resize: none;
 }
-
 /* end: contact us styles */
+
+/* Newsletter */
+
+
+/*=============== MESSAGE ===============*/
+.container-news {
+  max-width: 968px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.grid-news {
+  display: grid;
+}
+
+
+.button {
+  display: inline-block;
+  color: #fff;
+  padding: 1rem 2.15rem;
+  font-weight: 500;
+  border-radius: 3rem;
+  transition: .3s;
+  border: none;
+}
+
+@media screen and (max-width: 320px) {
+  .container-news {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .container-news {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.section-news {
+  padding: 4.5rem 0 1rem;
+}
+
+@media screen and (min-width: 767px) {
+  .section-news {
+    padding: 6.5rem 0 2rem;
+  }
+}
+
+.message__container {
+  row-gap: 3rem;
+  background-color: #00aeef;
+  padding: 2.5rem 1.5rem 2.5rem;
+  border-radius: 1.25rem;
+}
+
+.message__form {
+  text-align: center;
+}
+
+.message__title {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.message__input {
+  width: 100%;
+  background: #fff;
+  color: hsl(355, 4%, 35%);
+  padding: 1rem 1.5rem;
+  border-radius: 3rem;
+  border: none;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+.message__button {
+  background-color: #241e20;
+  width: 100%;
+  font-size: 16px;
+}
+
+.message__button:hover {
+  background-color: #000000;
+  cursor: pointer;
+}
+
+.message__img {
+  width: 200px;
+  justify-self: center;
+}
+
+
+@media screen and (min-width: 576px) {
+  .message__input,
+  .message__button {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 767px) {
+ 
+  .message__container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+}
+
+
+
+/* For large devices */
+@media screen and (min-width: 992px) {
+  .message__container {
+    padding: 3.5rem 0;
+    grid-template-columns: repeat(2, max-content);
+    column-gap: 4rem;
+    justify-content: center;
+  }
+
+  .message__form {
+    text-align: initial;
+  }
+  .message__title {
+    font-size: 2.5rem;
+  }
+  .message__input {
+    display: block;
+    width: 280px;
+  }
+  .message__button {
+    width: initial;
+  }
+  .message__img {
+    width: 320px;
+  }
+
+}
+
+
+/* Newsletter End */
 
 /*=============== FOOTER ===============*/
 

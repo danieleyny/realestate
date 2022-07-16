@@ -62,12 +62,25 @@
           <label for="Message">Message</label>
           <textarea name="Message" id="message"></textarea>
 
-          <button class="rounded">Contact Management</button>
+          <button class="rounded">Submit</button>
         </form>
       </div>
     </div>
   </section>
 
+
+   <!--==================== MESSAGE ====================-->
+   <section id="newsletter" class="message section-news container-news">
+    <div class="message__container grid-news">
+        <form action="https://formspree.io/f/xeqvlrqo" method="POST" class="message__form">
+            <h2 class="message__title">Our Newsletter!</h2>
+            <input name="Newsletter" type="email" placeholder="Email" class="message__input">
+            <button class="button message__button">Subscribe</button>
+        </form>
+
+        <img src="./images/TalCompanyLogo copy.png" alt="" class="message__img">
+    </div>
+</section>
   
 
   
@@ -120,7 +133,7 @@
                       <a href="contact.html" class="footer__link">Contact Us</a>
                   </li>
                   <li>
-                      <a href="contact.html" class="footer__link">Our Newsletter </a>
+                      <a href="contact.html#newsletter" class="footer__link">Our Newsletter </a>
                   </li>
                   <li>
                       <a href="contact.html" class="footer__link">Our Social Media </a>
