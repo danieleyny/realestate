@@ -25,6 +25,14 @@ body {
   transition: 0.6s;
 }
 
+li {
+  list-style: none;
+}
+
+.flex strong {
+  font-size: 20px;
+}
+
 .container {
   max-width: 1140px;
   margin: 0 auto;
