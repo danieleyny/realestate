@@ -60,7 +60,7 @@ h1 {
   margin-bottom: 1rem;
 }
 
-h2 {
+h1 {
   font-size: 2.5rem;
   color: #00aeef;
   margin-bottom: 3rem;
@@ -1357,10 +1357,10 @@ margin: 0px 5px 0px 5px;
 }
 
 @media (max-width: 767px) {
-  h1 {
+  h2 {
     font-size: 2rem;
   }
-  h2 {
+  h1 {
     font-size: 1.75rem;
   }
   h3 {
