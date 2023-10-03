@@ -6,10 +6,10 @@ function scrollHeader(){
     // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
     if(this.scrollY >= 50){
         header.classList.add('scroll-header');
-        logo.src = './assets/img/ZM EYNY Black.png';  // Change the logo src
+        logo.src = './assets/img/ZM EYNY Black.webp';  // Change the logo src
     } else {
         header.classList.remove('scroll-header');
-        logo.src = './assets/img/ZM EYNY Transparent.png';  // Revert the logo src
+        logo.src = './assets/img/ZM EYNY Transparent.webp';  // Revert the logo src
     }
 }
 window.addEventListener('scroll', scrollHeader);
