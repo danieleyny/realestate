@@ -574,16 +574,37 @@ margin-top: 4px;
 
 .logos__container {
   display: flex; /* Use Flexbox */
-  justify-content: space-between; /* Distribute items evenly */
   padding-top: 2rem;
   gap: 3rem 2rem;
+  display: grid; /* Use CSS Grid */
+  grid-template-columns: repeat(5, 1fr); /* Default to two columns */
+  justify-content: center; /* Center grid items in the container */
+  justify-items: center; /* Center content within the grid items */
 }
 
 .logos__img img {
   height: 110px;
   opacity: .6;
   transition: .3s;
+  max-width: 100%; /* Ensure images are responsive and fit their containers */
+  display: block; /* Remove any extra space below images */
 }
+
+/* Media query for screen sizes less than 445px */
+@media (max-width: 445px) {
+  .logos__container {
+    grid-template-columns: repeat(3, 2fr); /* Three columns when the screen is narrow */
+  }
+}
+
+
+
+
+
+
+
+
+
 
 .logos__img img:hover {
   opacity: 1;
@@ -1292,6 +1313,7 @@ margin-top: 4px;
     margin-left: 0rem;
     margin-right: 0rem;
   }
+  
 
 
 
