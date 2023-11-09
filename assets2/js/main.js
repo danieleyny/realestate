@@ -4,9 +4,9 @@
 function checkWindowSize() {
     var homeBg = document.querySelector('.home__bg');
     if (window.innerWidth < 445) {
-      homeBg.src = 'assets2/img/400whitfield/accordpool.png';
+      homeBg.src = '../assets2/img/400whitfield/accordpool.png';
     } else {
-      homeBg.src = 'assets2/img/400whitfield/400whitfield cover.png';
+      homeBg.src = '../assets2/img/400whitfield/400whitfield cover.png';
     }
   }
 
