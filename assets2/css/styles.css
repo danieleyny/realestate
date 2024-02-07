@@ -1,4 +1,3 @@
-/*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Poppins:wght@400;500&display=swap");
 
 /*=============== VARIABLES CSS ===============*/
@@ -155,6 +154,7 @@ img {
   cursor: pointer;
 }
 
+
 /* Navigation for mobile devices */
 @media screen and (max-width: 1023px) {
   .nav__menu {
@@ -169,6 +169,8 @@ img {
     transition: top .4s;
   }
 }
+
+
 
 .nav__list {
   text-align: center;
@@ -244,27 +246,7 @@ img {
   object-position: center;
 }
 
-@media (max-width: 445px) {
-  .home__bg {
-    content: url('../img/400whitfield/accordpool.png');
-  }
 
-  .home__container {
-    margin-bottom: 110px;
-  }
-
-  .home__description {
-    display: none;
-  }
-
-  .home-button{
-    margin-top: 220px;
-  }
-
-  .home__subtitle{
-    margin-top: -25px;
-  }
-}
 
 
 .home__shadow {
@@ -373,6 +355,38 @@ img {
 .about__description {
   margin-bottom: 2rem;
 }
+
+.events__description {
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  width: 600px; /* Default width */
+  text-align: center;
+}
+
+/* Centering the iframe */
+.iframe-container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden; /* Prevents the iframe from overflowing its container */
+  padding-bottom: 56.25%; /* Aspect ratio for 16:9 - Adjust as needed */
+  position: relative;
+  height: 0; /* Collapse the div and let the padding-bottom give it height */
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 5px;
+  
+}
+
+.iframe-container iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
 
 .about__image {
   position: relative;
@@ -690,8 +704,18 @@ img {
   bottom: 3rem;
 }
 
+
+
 /*=============== BREAKPOINTS ===============*/
-/* For small devices */
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 340px) {
   .container {
     margin-inline: 1rem;
@@ -702,7 +726,63 @@ img {
   }
 }
 
-/* For medium devices */
+
+
+/* Adjustments for screens narrower than 620px */
+@media (max-width: 620px) {
+  .events__description {
+    width: 450px; /* Adjusted width */
+    font-size: 14px; /* Adjusted font size */
+  }
+
+  .iframe-container{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+
+}
+
+
+/* For small devices */
+@media (max-width: 445px) {
+  .home__bg {
+   content: url('../img/400whitfield/accordpool.png');
+ }
+
+ .home__container {
+   margin-bottom: 110px;
+ }
+
+ .home__description {
+   display: none;
+ }
+
+ .home-button{
+   margin-top: 220px;
+ }
+
+ .home__subtitle{
+   margin-top: -25px;
+ }
+ 
+ .events__description {
+   margin: 0 auto;
+   margin-bottom: 2rem;
+   width: 350px; /* Further adjusted width for smaller screens */
+   font-size: 12px; /* Further reduced font size */
+   text-align: center; 
+ 
+ }
+
+ .iframe-container {
+   padding-top: 75%; /* Adjusts the aspect ratio for a taller view, accommodating for the narrower screen */
+ }
+
+ 
+}
+
+
 @media screen and (min-width: 576px) {
   .home__container,
   .about__container,
@@ -716,6 +796,10 @@ img {
     grid-template-columns: repeat(3, max-content);
   }
 }
+
+
+
+
 
 @media screen and (min-width: 768px) {
   .home__cards {
@@ -759,7 +843,8 @@ img {
   }
 }
 
-/* For large devices */
+
+
 @media screen and (min-width: 1023px) {
   .nav__close, 
   .nav__toggle {
@@ -780,6 +865,11 @@ img {
   }
 }
 
+
+
+
+
+/* For large devices */
 @media screen and (min-width: 1152px) {
   .container {
     margin-inline: auto;
@@ -836,6 +926,12 @@ img {
   .about__description {
     margin-bottom: 3rem;
   }
+
+  .events__description {
+    margin-bottom: 3rem;
+  }
+
+
   .about__img {
     width: 580px;
   }
