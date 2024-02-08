@@ -134,6 +134,8 @@ img {
   z-index: var(--z-fixed);
 }
 
+
+
 .nav {
   height: var(--header-height);
   display: flex;
@@ -367,10 +369,10 @@ img {
 .iframe-container {
   display: flex;
   justify-content: center;
-  overflow: hidden; /* Prevents the iframe from overflowing its container */
-  padding-bottom: 56.25%; /* Aspect ratio for 16:9 - Adjust as needed */
+  overflow: hidden; 
+  padding-bottom: 56.25%; 
   position: relative;
-  height: 0; /* Collapse the div and let the padding-bottom give it height */
+  height: 0; 
   margin-left: 50px;
   margin-right: 50px;
   border-radius: 5px;
