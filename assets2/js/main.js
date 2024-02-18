@@ -111,39 +111,70 @@ function showSlideAtIndex() {
 
 
 /*=============== How To ===============*/
-
 function calculateDistance() {
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-          var origins = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          var destinations = '400 Whitfield Rd Accord, NY 12404';
-
-          var service = new google.maps.DistanceMatrixService();
-          service.getDistanceMatrix({
-              origins: [origins],
-              destinations: [destinations],
-              travelMode: 'DRIVING',
-              unitSystem: google.maps.UnitSystem.IMPERIAL,
-          }, function(response, status) {
-              if (status !== 'OK') {
-                  alert('Error was: ' + status);
-              } else {
-                  var results = response.rows[0].elements;
-                  var element = results[0];
-                  var distance = element.distance.text;
-                  var duration = element.duration.text;
-
-                  document.getElementById('output').innerHTML = 'Distance: ' + distance + '<br>Duration: ' + duration;
-              }
-          });
-      }, function() {
-          alert('Geolocation is not supported by this browser.');
-      });
+  // Reference to the button
+  var button = document.querySelector('.howfar-button');
+  
+  // Check if the button text is already "Calculating...", indicating it's not the first click
+  if (button.innerHTML === 'Calculating...') {
+    button.innerHTML = 'Re-Check Distance'; // Change text for subsequent uses
   } else {
-      // Browser doesn't support Geolocation
-      alert("Geolocation is not supported by this browser.");
+    // First time click, change button to show loading state
+    button.innerHTML = 'Calculating...';
+  }
+  
+  button.style.backgroundColor = '#464b37'; // Green background
+  button.style.color = 'white'; // White text
+  button.disabled = true; // Disable button to prevent multiple clicks
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var origins = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      var destinations = '400 Whitfield Rd Accord, NY 12404';
+
+      var service = new google.maps.DistanceMatrixService();
+      service.getDistanceMatrix({
+        origins: [origins],
+        destinations: [destinations],
+        travelMode: 'DRIVING',
+        unitSystem: google.maps.UnitSystem.IMPERIAL,
+      }, function(response, status) {
+        if (status !== 'OK') {
+          alert('Error was: ' + status);
+        } else {
+          var results = response.rows[0].elements;
+          var element = results[0];
+          var distance = element.distance.text;
+          var duration = element.duration.text;
+          var directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${position.coords.latitude},${position.coords.longitude}&destination=400+Whitfield+Rd+Accord,+NY+12404&travelmode=driving`;
+
+          document.getElementById('output').innerHTML = `<span style="font-weight:800; margin-top: 18px;">Distance from you: <span style="color: white;">${distance}</span></span><br><span style="font-weight:800;">Duration by car: <span style="color: white;">${duration}</span></span><br><button style="margin-top: 30px; padding: 8px 8px; background-color: white; color: rgb(53, 48, 48); border: 1px solid #ccc; border-radius: 5px; cursor: pointer; box-shadow: 0 0 8px 2px rgba(0, 140, 255, 0.5);" onclick="window.open('${directionsUrl}','_blank')">Get Directions</button>`;
+        }
+        // Reset the button after loading is complete for any subsequent use
+        button.innerHTML = 'Re-Check Distance';
+        button.style.backgroundColor = 'white';
+        button.style.color = 'rgb(53, 48, 48)';
+        button.disabled = false;
+      });
+    }, function() {
+      alert('Geolocation is not supported by this browser.');
+      // Reset the button if geolocation fails
+      button.innerHTML = 'Re-Check Distance';
+      button.style.backgroundColor = 'white';
+      button.style.color = 'rgb(53, 48, 48)';
+      button.disabled = false;
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+    // Reset the button if geolocation is not supported
+    button.innerHTML = 'Re-Check Distance';
+    button.style.backgroundColor = 'white';
+    button.style.color = 'rgb(53, 48, 48)';
+    button.disabled = false;
   }
 }
+
+
 
 /*=============== How To End ===============*/
 

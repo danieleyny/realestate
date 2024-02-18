@@ -436,13 +436,26 @@ img {
 
 
 /*=============== How far ===============*/
+.howfar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
 .howfar-button {
-  background-color: #4CAF50; /* Green */
-  color: white;
+  background-color: white;
+  color: rgb(53, 48, 48);
   padding: 14px 20px;
-  margin: 8px 0;
+  margin-top: 13px; /* Updated margin-top */
   border: none;
   cursor: pointer;
+}
+
+#output {
+  text-align: center;
+  margin-top: 15px; /* Ensure spacing between the button and output text */
 }
 
 
