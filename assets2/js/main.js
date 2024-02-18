@@ -110,6 +110,44 @@ function showSlideAtIndex() {
 // Ensure to include the Hammer.js library before this script runs
 
 
+/*=============== How To ===============*/
+
+function calculateDistance() {
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+          var origins = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          var destinations = '400 Whitfield Rd Accord, NY 12404';
+
+          var service = new google.maps.DistanceMatrixService();
+          service.getDistanceMatrix({
+              origins: [origins],
+              destinations: [destinations],
+              travelMode: 'DRIVING',
+              unitSystem: google.maps.UnitSystem.IMPERIAL,
+          }, function(response, status) {
+              if (status !== 'OK') {
+                  alert('Error was: ' + status);
+              } else {
+                  var results = response.rows[0].elements;
+                  var element = results[0];
+                  var distance = element.distance.text;
+                  var duration = element.duration.text;
+
+                  document.getElementById('output').innerHTML = 'Distance: ' + distance + '<br>Duration: ' + duration;
+              }
+          });
+      }, function() {
+          alert('Geolocation is not supported by this browser.');
+      });
+  } else {
+      // Browser doesn't support Geolocation
+      alert("Geolocation is not supported by this browser.");
+  }
+}
+
+/*=============== How To End ===============*/
+
+
 /*=============== SHOW MENU ===============*/
 const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),

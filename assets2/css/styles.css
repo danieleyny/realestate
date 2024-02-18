@@ -435,6 +435,20 @@ img {
 }
 
 
+/*=============== How far ===============*/
+.howfar-button {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+
+/*=============== How far End ===============*/
+
+
 /*=============== POPULAR ===============*/
 .popular__container {
   padding-top: 1.5rem;
