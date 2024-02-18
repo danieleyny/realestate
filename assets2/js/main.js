@@ -179,6 +179,122 @@ function calculateDistance() {
 /*=============== How To End ===============*/
 
 
+/*=============== Testimony ===============*/
+document.addEventListener('DOMContentLoaded', function() {
+  const testimonials = [
+    {
+      text: "'Our stay was absolutely loving and the house is stunning! Such a warm and welcoming feeling from the second you step in. The hosts were very accommodating through our entire stay. We came to Accord because we love the area but found ourselves staying home cozied up by the fireplace everyday instead.'",
+      image: "assets2/img/catpicture.webp",
+      name: "Paul Jeams"
+    },
+    {
+      text: "'Finding this gem in Accord was the highlight of our year! The property is absolutely beautiful, offering serene views and a tranquil environment that allowed us to unwind and reconnect. The interior is both elegant and cozy, creating a warm atmosphere that felt like a hug. Our hosts were exceptional, providing tips for local adventures that enhanced our experience. Yet, we found ourselves drawn to the comfort of the fireplace, where we shared stories and laughter. It's not just a stay; it's an experience that soothes the soul. We're already planning our next escape to this enchanting retreat.'",
+      image: "assets2/img/womanselfie.webp",
+      name: "Kara Lesing"
+    },
+    {
+      text: "'This getaway surpassed all our expectations! From the moment we arrived, we were enveloped in comfort and luxury. The attention to detail in every room made our stay incredibly special. The surrounding nature was breathtaking, offering the perfect backdrop for a peaceful retreat. Our hosts went above and beyond, ensuring we had everything we needed for a memorable vacation. Whether it was enjoying the sunrise with a cup of coffee or spending the evenings by the fire pit under the stars, every moment was a delight. Accord has captured our hearts, and we can't wait to return to this beautiful home away from home.'",
+      image: "assets2/img/manselfie.webp",
+      name: "Josh Green"
+    }
+    // Add more testimonials as needed
+  ];
+
+  let currentTestimonialIndex = 0;
+  const progressBarFill = document.getElementById('progressBarFill');
+
+  function updateTestimonial() {
+    const testimonial = testimonials[currentTestimonialIndex];
+    document.querySelector('.explore__description').textContent = testimonial.text;
+    document.querySelector('.explore__perfil').src = testimonial.image;
+    document.querySelector('.explore__name').textContent = testimonial.name;
+
+    // Immediately reset progress bar fill to 0% for a seamless restart effect
+    progressBarFill.style.transition = 'none'; // Disable transition for immediate reset
+    progressBarFill.style.width = '0%';
+    
+    // Force reflow to apply the reset without transition
+    void progressBarFill.offsetWidth;
+
+    // Re-enable transition for smooth filling
+    progressBarFill.style.transition = 'width 20s linear';
+    setTimeout(() => progressBarFill.style.width = '100%', 10); // Start filling
+
+    currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+  }
+
+  setInterval(updateTestimonial, 20000); // Change every 20 seconds
+
+  // Initialize the first testimonial and progress bar
+  updateTestimonial();
+});
+
+
+
+/*=============== Testimony End ===============*/
+
+
+
+/*=============== Form Redirect  ===============*/
+document.addEventListener("DOMContentLoaded", function() {
+  var form = document.getElementById("myForm");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent default form submission
+    var formData = new FormData(form);
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      },
+    }).then(response => {
+      if (response.ok) {
+        // Handle success, such as displaying a success message
+        alert("Thank you for subscribing to our newsletter!");
+        form.reset(); // Reset the form to clear the input
+      } else {
+        // Handle error
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            alert(data["errors"].map(error => error["message"]).join(", "));
+          } else {
+            alert("Oops! There was a problem submitting your form");
+          }
+        });
+      }
+    }).catch(error => {
+      // Handle network errors
+      alert("There was a problem with your submission: " + error.message);
+    });
+  });
+});
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const input = document.querySelector('.join__input');
+
+  input.addEventListener('input', function() {
+    if(input.value.length > 0) { // Check if the user has started typing
+      input.classList.add('join__input--active');
+    } else {
+      input.classList.remove('join__input--active'); // Revert to original style if input is empty
+    }
+  });
+});
+
+/*=============== Form Redirect End ===============*/
+
+
+
+
+
+
+
 /*=============== SHOW MENU ===============*/
 const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
