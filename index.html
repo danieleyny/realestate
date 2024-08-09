@@ -17,6 +17,45 @@
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="assets/css/styles.css">
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    const counterElement = document.querySelector('#happyCustomersCounter');
+    const spanElement = counterElement.querySelector('span');
+    const targetValue = 1000; // Target value to count up to
+    const initialDelay = 30; // Initial delay in milliseconds (faster start)
+    const accelerationFactor = 0.90; // Factor to increase speed (faster acceleration)
+
+    let currentValue = 0;
+    let currentDelay = initialDelay;
+
+    function updateCounter() {
+        currentValue++;
+        counterElement.firstChild.textContent = currentValue;
+
+        if (currentValue < targetValue) {
+            setTimeout(updateCounter, currentDelay);
+            currentDelay = Math.max(currentDelay * accelerationFactor, 5); // Increase speed, but keep a minimum delay
+        } else {
+            counterElement.firstChild.textContent = `${targetValue}`;
+            spanElement.style.display = 'inline'; // Ensure the span is displayed
+        }
+    }
+
+    // Hide the plus sign initially
+    spanElement.style.display = 'none';
+
+    // Start the counter
+    updateCounter();
+});
+
+
+
+
+
+</script>
+
+
         <title>ZM Properties</title>
     </head>
     <body>
@@ -99,13 +138,13 @@
                         <div class="home__value">
                             <div>
                                 <h1 class="home__value-number">
-                                     323 <span>+</span>
+                                    323 <span>+</span>
                                 </h1>
                                 <span class="home__value-description">
                                     Apartments
                                 </span>
                             </div>
-    
+                        
                             <div>
                                 <h1 class="home__value-number">
                                     8 <span>+</span>
@@ -114,16 +153,17 @@
                                     Locations 
                                 </span>
                             </div>
-    
+                        
                             <div>
-                                <h1 class="home__value-number">
-                                    100 <span>+</span>
+                                <h1 class="home__value-number" id="happyCustomersCounter">
+                                    0 <span> +</span>
                                 </h1>
                                 <span class="home__value-description">
                                     Happy Customers
                                 </span>
                             </div>
                         </div>
+                        
                     </div>
     
                     <div class="home__images">
