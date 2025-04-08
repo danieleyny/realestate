@@ -501,8 +501,9 @@ position: absolute;
       let slideIndex = 0;
       const slides = document.querySelectorAll('.mySlides');
       const siteHeader = document.getElementById('siteHeader');
-      const unitsSection = document.getElementById("available-units");
+      const heroSection = document.querySelector('.slideshow-container');
   
+      // === Slideshow ===
       function showSlides() {
         slides.forEach(slide => (slide.style.display = 'none'));
         slideIndex++;
@@ -512,6 +513,7 @@ position: absolute;
       }
       showSlides();
   
+      // === Unit Image Carousels ===
       document.querySelectorAll('.unit-carousel').forEach(container => {
         const images = JSON.parse(container.dataset.images);
         let index = 0;
@@ -548,7 +550,7 @@ position: absolute;
         });
       });
   
-      // Theme toggle script
+      // === Theme Toggle ===
       const toggleBtn = document.querySelector('.theme-toggle');
       const toggleIcon = toggleBtn.querySelector('i');
       toggleBtn.addEventListener('click', () => {
@@ -556,20 +558,19 @@ position: absolute;
         toggleIcon.className = document.body.classList.contains('dark-mode') ? 'ri-sun-line' : 'ri-moon-line';
       });
   
-      // Hide header when scrolled past Available Units
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            siteHeader.style.opacity = '0';
-          } else {
-            siteHeader.style.opacity = '1';
-          }
-        });
-      }, { threshold: 0.3 });
+      // === Header Hide on Scroll Past Hero ===
+      window.addEventListener('scroll', () => {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
   
-      if (unitsSection) observer.observe(unitsSection);
+        if (heroBottom < 0) {
+          siteHeader.style.opacity = '0';
+        } else {
+          siteHeader.style.opacity = '1';
+        }
+      });
     });
   </script>
+  
 
 </body>
 </html>
