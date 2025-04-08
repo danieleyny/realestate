@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/img/favicon.webp" type="image/x-icon">
+
+  <title>The Junction</title>
+
+  <!-- Remix Icons (for toggle and arrows) -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    /* Color variables for light and dark mode */
+    :root {
+      --bg-color: #f5f5f5;
+      --text-color: #555;
+      --heading-color: #111;
+      --card-bg: #fff;
+      --hero-overlay: rgba(255, 255, 255, 0.6);
+      --button-bg: #111;
+      --button-color: #fff;
+      --toggle-bg: rgba(0, 0, 0, 0.2);
+      --toggle-color: #fff;
+    }
+    body.dark-mode {
+      --bg-color: #0a0a0a;
+      --text-color: #aaa;
+      --heading-color: #fff;
+      --card-bg: #111;
+      --hero-overlay: rgba(0, 0, 0, 0.6);
+      --button-bg: #fff;
+      --button-color: #000;
+      --toggle-bg: rgba(255, 255, 255, 0.2);
+      --toggle-color: #000;
+    }
+
+    /* Global styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    h1, h2, h3 {
+      color: var(--heading-color);
+      font-weight: 600;
+      margin: 0;
+    }
+    a {
+      text-decoration: none;
+      color: var(--heading-color);
+      transition: color 0.3s;
+    }
+    a:hover {
+      opacity: 0.8;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--toggle-bg);
+      color: var(--toggle-color);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .unit-carousel {
+  position: relative;
+}
+
+    .theme-toggle i {
+      font-size: 1.25rem;
+    }
+    .theme-toggle:hover {
+      opacity: 0.8;
+    }
+
+    /* Hero Section */
+    .slideshow-container {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .mySlides {
+      display: none;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .home__bg {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      filter: brightness(0.7);
+    }
+    .home__container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      z-index: 1;
+    }
+    .home__data {
+      background-color: var(--hero-overlay);
+      backdrop-filter: blur(8px);
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      max-width: 600px;
+    }
+    .home__subtitle {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+    }
+    .home__title {
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .home__description {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+    .dark-mode .home__subtitle,
+    .dark-mode .home__title,
+    .dark-mode .home__description {
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Sections */
+    .section {
+      padding: 4rem 1rem;
+    }
+    .section__title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* Cards (Units & Amenities) */
+    .popular__container {
+      display: grid;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .popular__card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .dark-mode .popular__card {
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .popular__card img {
+      border-radius: 12px;
+      width: 100%;
+      display: block;
+    }
+    .unit-image {
+      height: 200px;
+      object-fit: cover;
+    }
+    .play-button {
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+    }
+    .play-button:hover {
+      background: rgba(0,0,0,0.8);
+    }
+    .popular__title {
+      margin-top: 0.5rem;
+      font-size: 1.25rem;
+    }
+    .popular__card p {
+      margin-top: 0.25rem;
+      color: var(--text-color);
+    }
+
+    /* About Section */
+    .about-section {
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .dark-mode .about-section {
+      background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+    }
+    .about-section p {
+      max-width: 800px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin: 1rem auto 0;
+      color: var(--text-color);
+    }
+
+    /* Contact Form */
+    .contact-form-section {
+      background-color: #fafafa;
+      padding: 5rem 2rem;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    .dark-mode .contact-form-section {
+      background-color: #1a1a1a;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+    .contact-form-section form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.5rem;
+    }
+    .join__input,
+    .contact-form-section textarea {
+      font-size: 1rem;
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 100%;
+    }
+    .dark-mode .join__input,
+    .dark-mode .contact-form-section textarea {
+      background-color: #222;
+      color: #ddd;
+      border: 1px solid #333;
+    }
+
+    /* Buttons (CTA links and form submit) */
+    .button,
+    .join__button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      background-color: var(--button-bg);
+      color: var(--button-color);
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button {
+      margin-top: 1rem;
+    }
+    .button:hover,
+    .join__button:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f5f5f5;
+      color: #555;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .dark-mode footer {
+      background-color: #111;
+      color: #aaa;
+    }
+    .footer__content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .footer__content h3 {
+      color: var(--heading-color);
+      margin-bottom: 1rem;
+    }
+    .footer__link {
+      display: block;
+      color: inherit;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+    .footer__link:hover {
+      color: var(--heading-color);
+    }
+    .footer__bottom {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: inherit;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .home__data {
+        padding: 1.5rem;
+      }
+      .home__title {
+        font-size: 2rem;
+      }
+      .home__subtitle {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle"><i class="ri-moon-line"></i></button>
+
+  <!--==================== HERO SECTION ====================-->
+  <section class="slideshow-container">
+    <div class="mySlides">
+      <img src="./assets/img/the junction/ChatGPT Image Apr 8, 2025, 01_14_45 AM.png" class="home__bg" alt="Luxury apartments exterior"/>
+      <div class="home__container">
+        <div class="home__data">
+          <h3 class="home__subtitle">The Best Place To Live</h3>
+          <h1 class="home__title">Luxury Meets Community</h1>
+          <p class="home__description">Reach out to us to hear about all of our amazing offers for units at the most affordable prices.</p>
+          <a href="#contact-form" class="button">Contact Us <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mySlides">
+      <img src="./assets/img/the junction/ChatGPT Image Apr 8, 2025, 01_32_09 AM.png" class="home__bg" alt="Apartment amenities"/>
+      <div class="home__container">
+        <div class="home__data">
+          <h3 class="home__subtitle">Vibrant Living</h3>
+          <h1 class="home__title">Amenities You’ll Love</h1>
+          <p class="home__description">Enjoy modern spaces, playgrounds, pools and more!</p>
+          <a href="#ammenities" class="button">See Amenities <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mySlides">
+      <img src="./assets/img/the junction/781546A5-6FC2-4E35-95CE-192AFD5EB69F.PNG" class="home__bg" alt="Affordable elegant interiors"/>
+      <div class="home__container">
+        <div class="home__data">
+          <h3 class="home__subtitle">Your Next Chapter</h3>
+          <h1 class="home__title">Affordable Elegance</h1>
+          <p class="home__description">Start fresh in a home designed for comfort and joy.</p>
+          <a href="#contact-form" class="button">Apply Today <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--==================== AVAILABLE UNITS ====================-->
+  <section class="section">
+    <h2 class="section__title">Available Units</h2>
+    <div class="popular__container">
+      <div class="popular__card">
+        <div class="unit-carousel" data-images='["./assets/img/the junction/Unit 1/unit1.png", "./assets/img/the junction/Unit 1/unit2.png", "./assets/img/the junction/Unit 1/unit3.png", "./assets/img/the junction/Unit 1/unit4.png", "./assets/img/the junction/Unit 1/unit5.png", "./assets/img/the junction/Unit 1/unit6.png"]'>
+          <img src="./assets/img/the junction/Unit 1/unit1.png" alt="Unit 1 photo" class="unit-image">
+          <button class="play-button">▶</button>
+        </div>
+        <h3 class="popular__title">Family Home</h3>
+        <p>2 Bedroom / 2 Bath</p>
+        <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="popular__card">
+        <div class="unit-carousel" data-images='["./assets/img/the junction/Unit 1/1bed.png", "./assets/img/the junction/Unit 1/unit2.png", "./assets/img/the junction/Unit 1/unit4.png", "./assets/img/the junction/Unit 1/unit5.png", "./assets/img/the junction/Unit 1/unit6.png"]'>
+          <img src="./assets/img/the junction/Unit 1/1bed.png" alt="Unit 2 photo" class="unit-image">
+          <button class="play-button">▶</button>
+        </div>
+        <h3 class="popular__title">Couple Suite</h3>
+        <p>1 Bedroom / 1 Bath</p>
+        <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="popular__card">
+        <div class="unit-carousel" data-images='["./assets/img/the junction/Unit 1/unit5.png", "./assets/img/the junction/Unit 1/unit2.png", "./assets/img/the junction/Unit 1/unit3.png", "./assets/img/the junction/Unit 1/unit4.png", "./assets/img/the junction/Unit 1/unit1.png", "./assets/img/the junction/Unit 1/unit6.png"]'>
+          <img src="./assets/img/the junction/Unit 1/unit5.png" alt="Unit 3 photo" class="unit-image">
+          <button class="play-button">▶</button>
+        </div>
+        <h3 class="popular__title">Townhouse</h3>
+        <p>2 Bedroom / 2 Bath</p>
+        <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="popular__card">
+        <div class="unit-carousel" data-images='["./assets/img/the junction/Unit 1/unit3.png", "./assets/img/the junction/Unit 1/unit2.png", "./assets/img/the junction/Unit 1/unit1.png", "./assets/img/the junction/Unit 1/unit4.png", "./assets/img/the junction/Unit 1/unit5.png", "./assets/img/the junction/Unit 1/unit6.png"]'>
+          <img src="./assets/img/the junction/Unit 1/unit3.png" alt="Unit 4 photo" class="unit-image">
+          <button class="play-button">▶</button>
+        </div>
+        <h3 class="popular__title">Family Home</h3>
+        <p>2 Bedroom / 1 Bath</p>
+        <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!--==================== ABOUT US ====================-->
+  <section class="about-section">
+    <h2 class="section__title">About Us</h2>
+    <p>Welcome to The Junction. As the new management team, we're committed to elevating your experience with thoughtful renovations, modern designs, and responsive service. We strive to make this property not just where you live — but where you belong.</p>
+  </section>
+
+  <!--==================== AMENITIES ====================-->
+  <section id="ammenities" class="section">
+    <h2 class="section__title">Property Amenities</h2>
+    <div class="popular__container">
+      <div class="popular__card">
+        <img src="./assets/img/the junction/781546A5-6FC2-4E35-95CE-192AFD5EB69F.PNG" alt="Pool amenity">
+        <h3 class="popular__title">Pool</h3>
+      </div>
+      <div class="popular__card">
+        <img src="./assets/img/the junction/ChatGPT Image Apr 8, 2025, 01_32_09 AM.png" alt="Playground amenity">
+        <h3 class="popular__title">Playground</h3>
+      </div>
+      <div class="popular__card">
+        <img src="./assets/img/the junction/grill area.png" alt="Outdoor Grill amenity">
+        <h3 class="popular__title">Outdoor Grill</h3>
+      </div>
+    </div>
+  </section>
+
+  <!--==================== CONTACT FORM ====================-->
+  <section class="contact-form-section" id="contact-form">
+    <h2 class="section__title">Get In Touch</h2>
+    <form action="https://formspree.io/f/mjvjordw" method="POST">
+      <input type="text" name="fullName - TX" placeholder="Full Name" class="join__input" required />
+      <input type="tel" name="phone - TX" placeholder="Phone Number" class="join__input" required />
+      <input type="email" name="email - TX" placeholder="Email Address" class="join__input" required />
+      <textarea name="message - TX" placeholder="Optional Message" rows="4" class="join__input"></textarea>
+      <button type="submit" class="join__button">Submit <i class="ri-arrow-right-line"></i></button>
+    </form>
+  </section>
+
+  <!--==================== FOOTER ====================-->
+  <footer>
+    <div class="footer__content">
+      <div>
+        <h3>Contact</h3>
+        <a href="tel:8175223895" class="footer__link">(817) 522-3895</a>
+        <a href="mailto:eynymgmt@gmail.com" class="footer__link">eynymgmt@gmail.com</a>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <a href="#contact-form" class="footer__link">Contact Form</a>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <a href="index.html" class="footer__link">ZM Residences</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Eyny. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!--==================== SCRIPTS ====================-->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.mySlides');
+
+    function showSlides() {
+      slides.forEach(slide => (slide.style.display = 'none'));
+      slideIndex++;
+      if (slideIndex > slides.length) slideIndex = 1;
+      slides[slideIndex - 1].style.display = 'block';
+      setTimeout(showSlides, 5000);
+    }
+    showSlides();
+
+    document.querySelectorAll('.unit-carousel').forEach(container => {
+      const images = JSON.parse(container.dataset.images);
+      let index = 0;
+      const img = container.querySelector('.unit-image');
+      const button = container.querySelector('.play-button');
+      let interval = null;
+
+      // Ensure button is centered absolutely within the image container
+      button.style.position = 'absolute';
+      button.style.top = '50%';
+      button.style.left = '50%';
+      button.style.transform = 'translate(-50%, -50%)';
+
+      button.addEventListener('click', () => {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
+          button.style.display = 'block';
+          button.textContent = '▶';
+        } else {
+          interval = setInterval(() => {
+            index = (index + 1) % images.length;
+            img.src = images[index];
+          }, 2000);
+          button.style.display = 'none';
+        }
+      });
+
+      img.addEventListener('click', () => {
+        if (!interval) return;
+        clearInterval(interval);
+        interval = null;
+        button.textContent = '▶';
+        button.style.display = 'block';
+      });
+    });
+
+    // Theme toggle script
+    const toggleBtn = document.querySelector('.theme-toggle');
+    const toggleIcon = toggleBtn.querySelector('i');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleIcon.className = document.body.classList.contains('dark-mode') ? 'ri-sun-line' : 'ri-moon-line';
+    });
+  });
+</script>
+
+</body>
+</html>
