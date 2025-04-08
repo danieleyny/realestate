@@ -6,6 +6,7 @@
   <link rel="shortcut icon" href="assets/img/favicon.webp" type="image/x-icon">
 
   <title>The Junction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
   <!-- Remix Icons (for toggle and arrows) -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
@@ -351,6 +352,25 @@ position: absolute;
   </style>
 </head>
 <body>
+
+    <header id="siteHeader" style="
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: white;
+    border-radius: 12px;
+    transition: opacity 0.3s ease;
+  ">
+    The Junction
+  </header>
+  
+
+
+
   <!-- Theme Toggle Button -->
   <button class="theme-toggle"><i class="ri-moon-line"></i></button>
 
@@ -358,44 +378,23 @@ position: absolute;
   <section class="slideshow-container">
     <div class="mySlides">
       <img src="./assets/img/the junction/ChatGPT Image Apr 8, 2025, 01_14_45 AM.png" class="home__bg" alt="Luxury apartments exterior"/>
-      <div class="home__container">
-        <div class="home__data">
-          <h3 class="home__subtitle">The Best Place To Live</h3>
-          <h1 class="home__title">Luxury Meets Community</h1>
-          <p class="home__description">Reach out to us to hear about all of our amazing offers for units at the most affordable prices.</p>
-          <a href="#contact-form" class="button">Contact Us <i class="ri-arrow-right-line"></i></a>
-        </div>
-      </div>
+ 
     </div>
 
     <div class="mySlides">
       <img src="./assets/img/the junction/ChatGPT Image Apr 8, 2025, 01_32_09 AM.png" class="home__bg" alt="Apartment amenities"/>
-      <div class="home__container">
-        <div class="home__data">
-          <h3 class="home__subtitle">Vibrant Living</h3>
-          <h1 class="home__title">Amenities You’ll Love</h1>
-          <p class="home__description">Enjoy modern spaces, playgrounds, pools and more!</p>
-          <a href="#ammenities" class="button">See Amenities <i class="ri-arrow-right-line"></i></a>
-        </div>
-      </div>
+
     </div>
 
     <div class="mySlides">
       <img src="./assets/img/the junction/781546A5-6FC2-4E35-95CE-192AFD5EB69F.PNG" class="home__bg" alt="Affordable elegant interiors"/>
-      <div class="home__container">
-        <div class="home__data">
-          <h3 class="home__subtitle">Your Next Chapter</h3>
-          <h1 class="home__title">Affordable Elegance</h1>
-          <p class="home__description">Start fresh in a home designed for comfort and joy.</p>
-          <a href="#contact-form" class="button">Apply Today <i class="ri-arrow-right-line"></i></a>
-        </div>
-      </div>
+    
     </div>
   </section>
 
 
   <!--==================== AVAILABLE UNITS ====================-->
-  <section class="section">
+  <section id="available-units" class="section">
     <h2 class="section__title">Available Units</h2>
     <div class="popular__container">
       <div class="popular__card">
@@ -497,66 +496,80 @@ position: absolute;
   </footer>
 
   <!--==================== SCRIPTS ====================-->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.mySlides');
-
-    function showSlides() {
-      slides.forEach(slide => (slide.style.display = 'none'));
-      slideIndex++;
-      if (slideIndex > slides.length) slideIndex = 1;
-      slides[slideIndex - 1].style.display = 'block';
-      setTimeout(showSlides, 5000);
-    }
-    showSlides();
-
-    document.querySelectorAll('.unit-carousel').forEach(container => {
-      const images = JSON.parse(container.dataset.images);
-      let index = 0;
-      const img = container.querySelector('.unit-image');
-      const button = container.querySelector('.play-button');
-      let interval = null;
-
-      // Ensure button is centered absolutely within the image container
-      button.style.position = 'absolute';
-      button.style.top = '50%';
-      button.style.left = '50%';
-      button.style.transform = 'translate(-50%, -50%)';
-
-      button.addEventListener('click', () => {
-        if (interval) {
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let slideIndex = 0;
+      const slides = document.querySelectorAll('.mySlides');
+      const siteHeader = document.getElementById('siteHeader');
+      const unitsSection = document.getElementById("available-units");
+  
+      function showSlides() {
+        slides.forEach(slide => (slide.style.display = 'none'));
+        slideIndex++;
+        if (slideIndex > slides.length) slideIndex = 1;
+        slides[slideIndex - 1].style.display = 'block';
+        setTimeout(showSlides, 5000);
+      }
+      showSlides();
+  
+      document.querySelectorAll('.unit-carousel').forEach(container => {
+        const images = JSON.parse(container.dataset.images);
+        let index = 0;
+        const img = container.querySelector('.unit-image');
+        const button = container.querySelector('.play-button');
+        let interval = null;
+  
+        button.style.position = 'absolute';
+        button.style.top = '50%';
+        button.style.left = '50%';
+        button.style.transform = 'translate(-50%, -50%)';
+  
+        button.addEventListener('click', () => {
+          if (interval) {
+            clearInterval(interval);
+            interval = null;
+            button.style.display = 'block';
+            button.textContent = '▶';
+          } else {
+            interval = setInterval(() => {
+              index = (index + 1) % images.length;
+              img.src = images[index];
+            }, 2000);
+            button.style.display = 'none';
+          }
+        });
+  
+        img.addEventListener('click', () => {
+          if (!interval) return;
           clearInterval(interval);
           interval = null;
-          button.style.display = 'block';
           button.textContent = '▶';
-        } else {
-          interval = setInterval(() => {
-            index = (index + 1) % images.length;
-            img.src = images[index];
-          }, 2000);
-          button.style.display = 'none';
-        }
+          button.style.display = 'block';
+        });
       });
-
-      img.addEventListener('click', () => {
-        if (!interval) return;
-        clearInterval(interval);
-        interval = null;
-        button.textContent = '▶';
-        button.style.display = 'block';
+  
+      // Theme toggle script
+      const toggleBtn = document.querySelector('.theme-toggle');
+      const toggleIcon = toggleBtn.querySelector('i');
+      toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        toggleIcon.className = document.body.classList.contains('dark-mode') ? 'ri-sun-line' : 'ri-moon-line';
       });
+  
+      // Hide header when scrolled past Available Units
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            siteHeader.style.opacity = '0';
+          } else {
+            siteHeader.style.opacity = '1';
+          }
+        });
+      }, { threshold: 0.3 });
+  
+      if (unitsSection) observer.observe(unitsSection);
     });
-
-    // Theme toggle script
-    const toggleBtn = document.querySelector('.theme-toggle');
-    const toggleIcon = toggleBtn.querySelector('i');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      toggleIcon.className = document.body.classList.contains('dark-mode') ? 'ri-sun-line' : 'ri-moon-line';
-    });
-  });
-</script>
+  </script>
 
 </body>
 </html>
