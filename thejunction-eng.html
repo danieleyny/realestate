@@ -317,7 +317,197 @@ position: absolute;
     .join__button:hover {
       opacity: 0.9;
     }
-  
+
+
+    body.popup-open {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+}
+
+    canvas#confetti-canvas {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10001; /* one level above #moveInPopup (which is z-index 10000) */
+}
+
+  #moveInPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  #moveInPopup.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #moveInPopup .popup-content {
+    background: #fff;
+    max-width: 700px;
+    width: 90%;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  #moveInPopup .popup-date {
+  font-weight: 600;
+  color: #333;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+
+  #moveInPopup .close-popup {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  #moveInPopup .countdown {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #moveInPopup .countdown-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #moveInPopup .time {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  #moveInPopup .time-box {
+    background: #f3f3f3;
+    padding: 0.75rem 1.25rem;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 6px;
+    font-family: monospace;
+    transition: transform 0.3s ease;
+  }
+
+  #moveInPopup .form-content {
+    flex: 1 1 60%;
+    padding-left: 2rem;
+  }
+
+  #moveInPopup h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  #moveInPopup p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  #moveInPopup form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #moveInPopup input[type="email"] {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+  #moveInPopup button[type="submit"] {
+    background: #111;
+    color: #fff;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  #moveInPopup .no-thanks {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #666;
+  }
+
+
+  #moveInPopup .countdown-top-label {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  transform: translateY(-8px); /* Raise "ONLY" */
+  letter-spacing: 1px;
+}
+
+#moveInPopup .countdown-bottom-label {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  transform: translateY(6px); /* Lower "LEFT" */
+  letter-spacing: 1px;
+}
+
+#moveInPopup .time-box-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#moveInPopup .time-label {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+#moveInPopup .highlight {
+  color: #61c47a;
+  font-weight: 700;
+  background: #f8f8f8;
+  padding: 0.1rem 0.25rem;
+  border-radius: 4px;
+}
+
+
+
+
   
   
   
@@ -502,6 +692,44 @@ position: absolute;
     
     </div>
   </section>
+
+
+
+  <div id="moveInPopup">
+    <div class="popup-content">
+      <button class="close-popup">×</button>
+      <div class="countdown">
+        <div class="countdown-top-label">ONLY</div>
+        <div class="time">
+          <div class="time-box-group">
+            <div class="time-box" id="days">00</div>
+            <div class="time-label">Days</div>
+          </div>
+          <div class="time-box-group">
+            <div class="time-box" id="hours">00</div>
+            <div class="time-label">Hours</div>
+          </div>
+          <div class="time-box-group">
+            <div class="time-box" id="seconds">00</div>
+            <div class="time-label">Seconds</div>
+          </div>
+        </div>
+        <div class="countdown-bottom-label">LEFT</div>
+      </div>
+      
+      <div class="form-content">
+        <h2>Move In Special</h2>
+        <p id="offerText">$699 First Month for applications submitted before MM/DD/YY</p>
+        <form action="https://formspree.io/f/mjvjordw" method="POST">
+          <input type="email" name="email" placeholder="Enter your email address" required />
+          <button type="submit">Accept Offer</button>
+        </form>
+        <div class="no-thanks">No thanks, I'll pass</div>
+      </div>
+    </div>
+  </div>
+  
+  <canvas id="confetti-canvas"></canvas>
 
 
   <!--==================== AVAILABLE UNITS ====================-->
@@ -708,131 +936,197 @@ position: absolute;
   </footer>
 
   <!--==================== SCRIPTS ====================-->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      let slideIndex = 0;
-      const slides = document.querySelectorAll('.mySlides');
-      const siteHeader = document.getElementById('siteHeader');
-      const heroSection = document.querySelector('.slideshow-container');
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   
-      // === Slideshow ===
-      function showSlides() {
-        slides.forEach(slide => (slide.style.display = 'none'));
-        slideIndex++;
-        if (slideIndex > slides.length) slideIndex = 1;
-        slides[slideIndex - 1].style.display = 'block';
-        setTimeout(showSlides, 5000);
-      }
-      showSlides();
-  
-      // === Unit Image Carousels ===
-      document.querySelectorAll('.unit-carousel').forEach(container => {
-        const images = JSON.parse(container.dataset.images);
-        let index = 0;
-        const img = container.querySelector('.unit-image');
-        const button = container.querySelector('.play-button');
-        let interval = null;
-  
-        button.style.position = 'absolute';
-        button.style.top = '50%';
-        button.style.left = '50%';
-        button.style.transform = 'translate(-50%, -50%)';
-  
-        button.addEventListener('click', () => {
-          if (interval) {
-            clearInterval(interval);
-            interval = null;
-            button.style.display = 'block';
-            button.textContent = '▶';
-          } else {
-            interval = setInterval(() => {
-              index = (index + 1) % images.length;
-              img.src = images[index];
-            }, 2000);
-            button.style.display = 'none';
-          }
-        });
-  
-        img.addEventListener('click', () => {
-          if (!interval) return;
+<script>
+  let scrollY = 0;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.mySlides');
+    const siteHeader = document.getElementById('siteHeader');
+    const heroSection = document.querySelector('.slideshow-container');
+
+    function showSlides() {
+      slides.forEach(slide => (slide.style.display = 'none'));
+      slideIndex++;
+      if (slideIndex > slides.length) slideIndex = 1;
+      slides[slideIndex - 1].style.display = 'block';
+      setTimeout(showSlides, 5000);
+    }
+    showSlides();
+
+    document.querySelectorAll('.unit-carousel').forEach(container => {
+      const images = JSON.parse(container.dataset.images);
+      let index = 0;
+      const img = container.querySelector('.unit-image');
+      const button = container.querySelector('.play-button');
+      let interval = null;
+
+      button.addEventListener('click', () => {
+        if (interval) {
           clearInterval(interval);
           interval = null;
           button.textContent = '▶';
           button.style.display = 'block';
-        });
-      });
-  
-      // === Theme Toggle ===
-      const toggleBtn = document.querySelector('.theme-toggle');
-      const toggleIcon = toggleBtn.querySelector('i');
-      toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        toggleIcon.className = document.body.classList.contains('dark-mode') ? 'ri-sun-line' : 'ri-moon-line';
-      });
-  
-      // === Header Hide on Scroll Past Hero ===
-      window.addEventListener('scroll', () => {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-  
-        if (heroBottom < 0) {
-          siteHeader.style.opacity = '0';
         } else {
-          siteHeader.style.opacity = '1';
+          interval = setInterval(() => {
+            index = (index + 1) % images.length;
+            img.src = images[index];
+          }, 2000);
+          button.style.display = 'none';
         }
+      });
+
+      img.addEventListener('click', () => {
+        if (!interval) return;
+        clearInterval(interval);
+        interval = null;
+        button.textContent = '▶';
+        button.style.display = 'block';
       });
     });
 
-  
-  
-    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    const toggleBtn = document.querySelector('.theme-toggle');
+    const toggleIcon = toggleBtn.querySelector('i');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleIcon.className = document.body.classList.contains('dark-mode') ? 'ri-sun-line' : 'ri-moon-line';
+    });
+
+    window.addEventListener('scroll', () => {
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+      siteHeader.style.opacity = heroBottom < 0 ? '0' : '1';
+    });
+  });
+
+  document.querySelectorAll('.accordion-toggle').forEach(button => {
     button.addEventListener('click', () => {
       const item = button.parentElement;
-      const currentlyOpen = document.querySelector('.accordion-item.active');
-      if (currentlyOpen && currentlyOpen !== item) {
-        currentlyOpen.classList.remove('active');
+      const openItem = document.querySelector('.accordion-item.active');
+      if (openItem && openItem !== item) {
+        openItem.classList.remove('active');
       }
       item.classList.toggle('active');
     });
   });
 
-
-
-  
   function createMoney() {
-  const container = document.getElementById("money-fall");
-  container.innerHTML = "";
-  for (let i = 0; i < 40; i++) {
-    const img = document.createElement("img");
-    img.src = "./assets/img/the junction/money-illustration-isolated_23-2151568528-removebg-preview.png";
-    img.style.left = Math.random() * 100 + "%";
-    img.style.animationDelay = (Math.random() * 1.5) + "s";
-    img.style.width = (50 + Math.random() * 30) + "px"; // random width between 50–80px
-    container.appendChild(img);
+    const container = document.getElementById("money-fall");
+    container.innerHTML = "";
+    for (let i = 0; i < 40; i++) {
+      const img = document.createElement("img");
+      img.src = "./assets/img/the junction/money-illustration-isolated_23-2151568528-removebg-preview.png";
+      img.style.left = Math.random() * 100 + "%";
+      img.style.animationDelay = (Math.random() * 1.5) + "s";
+      img.style.width = (50 + Math.random() * 30) + "px";
+      container.appendChild(img);
+    }
+    container.style.display = "block";
+    setTimeout(() => container.style.display = "none", 2500);
   }
-  container.style.display = "block";
-  setTimeout(() => container.style.display = "none", 2500);
-}
 
-function isInViewport(el) {
-  const rect = el.getBoundingClientRect();
-  return (
-    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.bottom >= 0
-  );
-}
-
-let moneyShown = false;
-window.addEventListener("scroll", () => {
-  const referralSection = document.querySelector(".accordion-minimal");
-  if (referralSection && isInViewport(referralSection) && !moneyShown) {
-    createMoney();
-    moneyShown = true;
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+           rect.bottom >= 0;
   }
-});
+
+  let moneyShown = false;
+  window.addEventListener("scroll", () => {
+    const referralSection = document.querySelector(".accordion-minimal");
+    if (referralSection && isInViewport(referralSection) && !moneyShown) {
+      createMoney();
+      moneyShown = true;
+    }
+  });
+
+  function getLastDayOfMonth() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  }
+
+  function updateCountdown(endDate) {
+    const now = new Date();
+    const timeLeft = endDate - now;
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+    const seconds = Math.floor((timeLeft / 1000) % 60);
+
+    document.getElementById("days").textContent = String(days).padStart(2, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+  }
+
+  function launchConfetti() {
+    const duration = 2000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 50, spread: 360, ticks: 100, zIndex: 10001 };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) return clearInterval(interval);
+
+      for (let i = 0; i < 10; i++) {
+        confetti(Object.assign({}, defaults, {
+          particleCount: 10 + Math.floor(Math.random() * 10),
+          origin: { x: Math.random(), y: Math.random() * 0.8 }
+        }));
+      }
+    }, 150);
+  }
+
+  function showPopup() {
+    const popup = document.getElementById("moveInPopup");
+    const endDate = getLastDayOfMonth();
+    const options = { month: '2-digit', day: '2-digit', year: 'numeric' };
+    document.getElementById("offerText").innerHTML =
+  `<span class="highlight">$699 First Month</span> for applications submitted before<span class="popup-date">${endDate.toLocaleDateString(undefined, options)}</span>`;
 
 
 
-  </script>
+    scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.classList.add("popup-open");
+
+    popup.classList.add("visible");
+    setInterval(() => updateCountdown(endDate), 1000);
+    launchConfetti();
+  }
+
+  function closePopup() {
+    document.getElementById("moveInPopup").classList.remove("visible");
+    document.body.classList.remove("popup-open");
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, scrollY);
+  }
+
+  document.querySelector(".close-popup").addEventListener("click", closePopup);
+  document.querySelector(".no-thanks").addEventListener("click", closePopup);
+
+  function isMostlyInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+    return rect.top <= viewHeight * 0.5 && rect.bottom >= viewHeight * 0.5;
+  }
+
+  let popupShown = false;
+  window.addEventListener("scroll", () => {
+    const unitSection = document.getElementById("available-units");
+    if (unitSection && isMostlyInViewport(unitSection) && !popupShown) {
+      showPopup();
+      popupShown = true;
+    }
+  });
+</script>
+
   
 
 </body>
