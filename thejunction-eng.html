@@ -317,6 +317,94 @@ position: absolute;
     .join__button:hover {
       opacity: 0.9;
     }
+  
+  
+  
+  
+    .accordion-minimal {
+  border-top: 1px solid #ccc;
+}
+
+.accordion-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  font-size: 1.2rem;
+  padding: 1.2rem 0;
+  font-weight: 500;
+  color: #111;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+.accordion-toggle:hover {
+  color: #0071e3;
+}
+
+.accordion-icon::before {
+  content: "+";
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-icon::before {
+  content: "−";
+}
+
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  background-color: #fafafa;
+  padding: 0 0;
+  border-bottom: 1px solid #eee;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.accordion-item.active .accordion-panel {
+  padding: 0.75rem 0 1.25rem 0;
+  max-height: 300px;
+}
+
+
+.money-fall {
+  position: fixed;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;
+}
+
+.money-fall img {
+  position: absolute;
+  animation: fall 2.5s linear forwards;
+  /* width is now set dynamically in JS for variation */
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+
 
     /* Footer */
     footer {
@@ -368,6 +456,9 @@ position: absolute;
       .home__subtitle {
         font-size: 0.9rem;
       }
+      .accordion-panel {
+  text-align: center;
+}
     }
   </style>
 </head>
@@ -492,6 +583,70 @@ position: absolute;
 
     </div>
   </section>
+
+
+<!--==================== APPLY NOW SECTION ====================-->
+<section class="about-section" style="padding: 5rem 2rem; margin-top: -2rem;">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; background-color: #f0f0f5; padding: 3rem 2rem; border-radius: 20px; max-width: 1200px; margin: 0 auto;">
+
+    <!-- Left Text Section -->
+    <div style="flex: 1 1 400px; padding: 1rem; text-align: center;">
+      <h2 style="font-size: 2rem; font-weight: bold; color: #111; margin-bottom: 1rem;">Interested in a unit?</h2>
+      <p style="font-size: 1.1rem; color: #444; max-width: 500px; margin: 0 auto 1.5rem;">Prospective tenants that apply now through our website will for a limited time only receive a discount on the unit that they apply for.</p>
+      <a href="https://www.bluemoonforms.com/application/75084" target="_blank" class="button" style="background-color: #2563eb; color: white; border-radius: 30px; font-size: 1rem; padding: 0.75rem 2rem; text-decoration: none;">Apply Now</a>
+    </div>
+
+    <!-- Right Illustration Section -->
+    <div style="flex: 1 1 400px; padding: 1rem; text-align: center;">
+      <img src="./assets/img/the junction/houseapplication-removebg-preview.png" alt="Apply Illustration" style="max-width: 350px; height: auto; margin: 0 auto;" />
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<div class="money-fall" id="money-fall"></div>
+
+<!--==================== REFERRAL REWARDS SECTION (MINIMAL DESIGN) ====================-->
+<section class="about-section" style="padding: 5rem 2rem; background-color: #f9f9f9;">
+  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; max-width: 1200px; margin: 0 auto; gap: 2rem;">
+
+    <!-- Left Accordion -->
+    <div style="flex: 1 1 500px;">
+      <h2 style="font-size: 2rem; font-weight: 600; color: #000; margin-bottom: 2rem;">Refer. Earn. Repeat.</h2>
+      <div class="accordion-minimal">
+        <div class="accordion-item">
+          <button class="accordion-toggle">
+            Earn $400 <span class="accordion-icon"></span>
+          </button>
+          <div class="accordion-panel">Refer someone to us and earn $400 when they sign a lease! <strong>(LIMITED TIME OFFER)</strong></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-toggle">
+            Earn $900 <span class="accordion-icon"></span>
+          </button>
+          <div class="accordion-panel">Refer two tenants who sign leases and earn $900 in referral rewards! <strong>(LIMITED TIME OFFER)</strong></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-toggle">
+            Earn $1,200+ <span class="accordion-icon"></span>
+          </button>
+          <div class="accordion-panel">Refer three tenants who sign leases to earn $1,200 — plus get an extra $400 for each additional referral! <strong>(LIMITED TIME OFFER)</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div style="flex: 1 1 400px; text-align: center;">
+      <img src="./assets/img/the junction/referafriend.webp" alt="Referral Image" style="max-width: 100%; height: auto; border-radius: 16px;" />
+    </div>
+
+  </div>
+</section>
+
+
 
   <!--==================== ABOUT US ====================-->
   <section class="about-section">
@@ -626,6 +781,57 @@ position: absolute;
         }
       });
     });
+
+  
+  
+    document.querySelectorAll('.accordion-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      const currentlyOpen = document.querySelector('.accordion-item.active');
+      if (currentlyOpen && currentlyOpen !== item) {
+        currentlyOpen.classList.remove('active');
+      }
+      item.classList.toggle('active');
+    });
+  });
+
+
+
+  
+  function createMoney() {
+  const container = document.getElementById("money-fall");
+  container.innerHTML = "";
+  for (let i = 0; i < 40; i++) {
+    const img = document.createElement("img");
+    img.src = "./assets/img/the junction/money-illustration-isolated_23-2151568528-removebg-preview.png";
+    img.style.left = Math.random() * 100 + "%";
+    img.style.animationDelay = (Math.random() * 1.5) + "s";
+    img.style.width = (50 + Math.random() * 30) + "px"; // random width between 50–80px
+    container.appendChild(img);
+  }
+  container.style.display = "block";
+  setTimeout(() => container.style.display = "none", 2500);
+}
+
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom >= 0
+  );
+}
+
+let moneyShown = false;
+window.addEventListener("scroll", () => {
+  const referralSection = document.querySelector(".accordion-minimal");
+  if (referralSection && isInViewport(referralSection) && !moneyShown) {
+    createMoney();
+    moneyShown = true;
+  }
+});
+
+
+
   </script>
   
 
