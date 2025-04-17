@@ -241,6 +241,27 @@ position: absolute;
       color: var(--text-color);
     }
 
+    .unit-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.7rem;
+  color: #2563eb; /* bold blue */
+}
+
+.unit-price .cheapest {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #38d95e; /* green */
+  margin-left: 6px;
+}
+
+
+
+
+
+
+
     /* About Section */
     .about-section {
       background-color: #f5f5f5;
@@ -649,6 +670,27 @@ position: absolute;
       .accordion-panel {
   text-align: center;
 }
+
+#moveInPopup .countdown-top-label {
+
+  margin-bottom: 1rem;
+  
+}
+
+#moveInPopup .countdown-bottom-label {
+
+  margin-top: 1rem;
+  margin-bottom: 30px;
+ 
+}
+
+.form-content h2{
+  text-align: center;
+}
+.form-content p{
+  text-align: center;
+}
+
     }
   </style>
 </head>
@@ -747,6 +789,7 @@ position: absolute;
         </div>
         <h3 class="popular__title">Townhouse Duplex</h3>
         <p>2 Bedroom / 2 Bath</p>
+        <p class="unit-price">$1,399 per month <span class="cheapest">(LOWEST IN THE AREA)</span></p>
         <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
       </div>
 
@@ -758,6 +801,7 @@ position: absolute;
         </div>
         <h3 class="popular__title">Townhouse Duplex</h3>
         <p>2 Bedroom / 1.5 Bath</p>
+        <p class="unit-price">$1,339 per month <span class="cheapest">(LOWEST IN THE AREA)</span></p>
         <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
       </div>
 
@@ -769,6 +813,7 @@ position: absolute;
         </div>
         <h3 class="popular__title">Townhouse Duplex</h3>
         <p>1 Bedroom / 1 Bath</p>
+        <p class="unit-price">$1,175 per month <span class="cheapest">(LOWEST IN THE AREA)</span></p>
         <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
       </div>
 
@@ -781,6 +826,7 @@ position: absolute;
         </div>
         <h3 class="popular__title">Apartment Suite</h3>
         <p>2 Bedroom / 2 Bath</p>
+        <p class="unit-price">$1,289 per month <span class="cheapest">(LOWEST IN THE AREA)</span></p>
         <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
       </div>
 
@@ -792,6 +838,7 @@ position: absolute;
         </div>
         <h3 class="popular__title">Apartment Suite</h3>
         <p>2 Bedroom / 1 Bath</p>
+        <p class="unit-price">$1,249 per month <span class="cheapest">(LOWEST IN THE AREA)</span></p>
         <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
       </div>
 
@@ -803,6 +850,7 @@ position: absolute;
         </div>
         <h3 class="popular__title">Apartment Suite</h3>
         <p>1 Bedroom / 1 Bath</p>
+        <p class="unit-price">$990 per month <span class="cheapest">(LOWEST IN THE AREA)</span></p>
         <a href="#contact-form" class="button">More Info <i class="ri-arrow-right-line"></i></a>
       </div>
 
@@ -908,6 +956,17 @@ position: absolute;
       <input type="text" name="fullName - TX" placeholder="Full Name" class="join__input" required />
       <input type="tel" name="phone - TX" placeholder="Phone Number" class="join__input" required />
       <input type="email" name="email - TX" placeholder="Email Address" class="join__input" required />
+      <select name="unitLayout - TX" class="join__input">
+        <option value="" disabled selected>Which layout are you interested in?</option>
+        <option value="Unit Type">2 Bedroom / 2 Bath - Townhouse</option>
+        <option value="Unit Type">2 Bedroom / 1.5 Bath - Townhouse</option>
+        <option value="Unit Type">1 Bedroom / 1 Bath - Townhouse</option>
+        <option value="Unit Type">2 Bedroom / 2 Bath - Apartment</option>
+        <option value="Unit Typeh">2 Bedroom / 1 Bath - Apartment</option>
+        <option value="Unit Type">1 Bedroom / 1 Bath - Apartment</option>
+        <option value="Not Interested">Not interested in a unit</option>
+      </select>
+      
       <textarea name="message - TX" placeholder="Optional Message" rows="4" class="join__input"></textarea>
       <button type="submit" class="join__button">Submit <i class="ri-arrow-right-line"></i></button>
     </form>
@@ -1060,22 +1119,26 @@ position: absolute;
   }
 
   function launchConfetti() {
-    const duration = 2000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 50, spread: 360, ticks: 100, zIndex: 10001 };
+  const duration = 3000;
+  const animationEnd = Date.now() + duration;
+  const defaults = {
+    startVelocity: 25,   // slower
+    spread: 180,         // less wide
+    ticks: 200,          // lasts longer
+    zIndex: 10001
+  };
 
-    const interval = setInterval(() => {
-      const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) return clearInterval(interval);
+  const interval = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+    if (timeLeft <= 0) return clearInterval(interval);
 
-      for (let i = 0; i < 10; i++) {
-        confetti(Object.assign({}, defaults, {
-          particleCount: 10 + Math.floor(Math.random() * 10),
-          origin: { x: Math.random(), y: Math.random() * 0.8 }
-        }));
-      }
-    }, 150);
-  }
+    confetti(Object.assign({}, defaults, {
+      particleCount: 6 + Math.floor(Math.random() * 6),
+      origin: { x: Math.random(), y: Math.random() * 0.6 }
+    }));
+  }, 300);
+}
+
 
   function showPopup() {
     const popup = document.getElementById("moveInPopup");
