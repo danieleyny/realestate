@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply | ZM Management</title>
+
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/png">
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    /* 1. Global Variables and Resets */
+    :root {
+      /* Colors */
+      --first-color: hsl(220, 70%, 55%); /* Primary Blue */
+      --first-color-lighten: hsl(220, 70%, 95%); /* Very light blue for documents */
+      --form-section-bg: hsl(220, 10%, 96%); /* NEW: Light gray for form sections */
+      --title-color: hsl(220, 20%, 20%);
+      --text-color: hsl(220, 10%, 40%);
+      --body-color: hsl(220, 10%, 98%);
+      --container-color: #fff; /* Card background */
+      --border-color: hsl(220, 10%, 85%);
+
+      /* Typography */
+      --biggest-font-size: 2.5rem;
+      --h1-font-size: 1.5rem;
+      --h3-font-size: 1.125rem;
+      --normal-font-size: 0.938rem;
+
+      /* Spacing */
+      --section-padding: 5rem 0 2rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--body-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1024px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    /* 2. Application Section Styling (Adjusted for no fixed header) */
+    .application {
+      padding-top: 3rem; /* Less space needed at top now */
+      padding-bottom: var(--section-padding);
+    }
+
+    .section__subtitle {
+      display: block;
+      font-size: var(--normal-font-size);
+      color: var(--first-color);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .section__title {
+      font-size: var(--biggest-font-size);
+      color: var(--title-color);
+      margin-bottom: 1rem;
+    }
+
+    .section__title span {
+      color: var(--first-color);
+    }
+
+    .application__intro {
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    /* 3. Application Card and Responsive Grid Layout (Desktop/Mobile) */
+    .application__card {
+      display: grid;
+      /* Desktop Layout: 2/3 for Form, 1/3 for Documents */
+      grid-template-columns: 2fr 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem;
+      background-color: var(--container-color);
+      border-radius: 1rem;
+      box-shadow: 0 8px 25px hsla(220, 70%, 55%, 0.15);
+    }
+
+    /* 4. Form Sections and Inputs (Background Added to Sections) */
+    .application-form__section {
+      margin-bottom: 2rem;
+      padding: 1.5rem; /* Padding for the new background color */
+      background-color: var(--form-section-bg); /* Highlight background */
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-color); /* Subtle border for definition */
+    }
+    
+    .application-form__section:last-of-type {
+        margin-bottom: 0; /* Remove margin from last section */
+    }
+
+    .application-form__section-title {
+      font-size: var(--h3-font-size);
+      color: var(--title-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color); /* Separator under title */
+    }
+
+    .application-form__grid {
+      display: grid;
+      /* Desktop: Two columns for most fields */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .application-form__group--full {
+      grid-column: 1 / -1;
+    }
+
+    .application-form__group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--title-color);
+      font-size: 0.9rem;
+    }
+
+    .application-form__group input,
+    .application-form__group select,
+    .application-form__group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      background-color: var(--container-color); /* Inputs are white */
+      color: var(--text-color);
+      font-size: var(--normal-font-size);
+      transition: border-color 0.3s;
+    }
+
+    .application-form__group input:focus,
+    .application-form__group textarea:focus,
+    .application-form__group select:focus {
+      outline: none;
+      border-color: var(--first-color);
+      box-shadow: 0 0 0 3px hsla(220, 70%, 55%, 0.2);
+    }
+
+    .application-form__consent {
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: var(--text-color);
+      padding: 1rem;
+      border: 1px dashed var(--first-color); /* Dashed primary color border */
+      background-color: var(--form-section-bg);
+      border-radius: 0.5rem;
+    }
+
+    /* 5. Supporting Documents Aside */
+    .application-docs {
+      padding: 1.5rem;
+      background-color: var(--first-color-lighten); /* Light Blue Background */
+      border-radius: 0.75rem;
+      align-self: start;
+      position: sticky;
+      top: 2rem; /* Adjusted sticky position */
+    }
+
+    .application-docs__title {
+      font-size: var(--h3-font-size);
+      color: var(--title-color);
+      margin-bottom: 1rem;
+    }
+
+    .application-docs__list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+    }
+
+    .application-docs__list li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.75rem;
+      line-height: 1.4;
+    }
+
+    .application-docs__list li::before {
+      content: "\ea94";
+      font-family: 'remixicon';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.2rem;
+      color: var(--first-color);
+    }
+    
+    /* 6. Buttons */
+    .button {
+      display: inline-block;
+      background-color: var(--first-color);
+      color: var(--container-color);
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      transition: background-color 0.3s;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .application-form__button {
+      margin-top: 1.5rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .button:hover {
+      background-color: hsl(220, 70%, 45%);
+    }
+
+    /* 7. Footer */
+    .footer {
+      padding-top: 3rem;
+      background-color: var(--title-color);
+      color: var(--border-color);
+    }
+
+    .footer__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding-bottom: 1rem;
+    }
+
+    .footer__content {
+      margin-bottom: 1rem;
+    }
+
+    .footer__title {
+      color: var(--container-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer__copy {
+      display: block;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 1rem 0;
+      width: 100%;
+      border-top: 1px solid hsla(220, 10%, 85%, 0.2);
+    }
+
+    /* 8. MOBILE RESPONSIVENESS (Media Queries) */
+    @media screen and (max-width: 768px) {
+      /* Application Card: Stacked Layout */
+      .application__card {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+
+      /* Form Fields: Single Column */
+      .application-form__grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      /* Form Section Padding for Mobile */
+      .application-form__section {
+          padding: 1rem;
+      }
+
+      /* Supporting Docs: No sticky, regular flow */
+      .application-docs {
+        position: static;
+        margin-top: 2rem;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="assets/css/styles.css"> 
+</head>
+<body>
+
+  <main class="main">
+    <section class="section application">
+      <div class="container application__container">
+
+        <span class="section__subtitle">Apply</span>
+        <h1 class="section__title">Rental Application<span>.</span></h1>
+        <p class="value__description application__intro">
+          Please complete the form below to apply for one of our apartments.
+          After submitting, we will contact you with next steps and instructions
+          to provide supporting documents.
+        </p>
+
+        <div class="application__card">
+          <form
+            action="https://formspree.io/f/mjvjordw"
+            method="POST"
+            class="application-form"
+          >
+            <input type="hidden" name="form_type" value="ZM Rental Application">
+
+            <section class="application-form__section">
+              <h3 class="application-form__section-title">1. Personal Information</h3>
+              <div class="application-form__section-content application-form__grid">
+                <div class="application-form__group application-form__group--full">
+                  <label for="full_name">Full Legal Name</label>
+                  <input id="full_name" name="full_name" type="text" required placeholder="John Doe">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="dob">Date of Birth</label>
+                  <input id="dob" name="dob" type="text" placeholder="MM/DD/YYYY">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" required placeholder="(555) 123-4567">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="email">Email Address</label>
+                  <input id="email" name="email" type="email" required placeholder="you@email.com">
+                </div>
+              
+                <div class="application-form__group">
+                  <label for="email">Social Security Number</label>
+                  <input id="SSN" name="SSN" type="text" required placeholder="021-34-1425">
+                </div>
+
+                       
+              </div>
+            </section>
+
+                      <section class="application-form__section">
+              <h3 class="application-form__section-title">2. Current Address</h3>
+              <div class="application-form__section-content application-form__grid">
+                      <div class="application-form__group application-form__group--full">
+                  <label for="current_address">Current Address</label>
+                  <input id="current_address" name="current_address" type="text" required placeholder="Street, City, State ZIP">
+                </div>
+
+                      <div class="application-form__group application-form__group--full">
+                  <label for="Current_landlord">Current Landlord Name</label>
+                  <input id="Current_landlord" name="Current_landlord" type="text" placeholder="Name">
+                </div>
+
+                <div class="application-form__group application-form__group--full">
+                  <label for="Current_landlord">Current Landlord Phone Number</label>
+                  <input id="Current_landlordnum" name="Current_landlordnum" type="text" placeholder="Phone Number">
+                </div>
+
+                <div class="application-form__group application-form__group--full">
+                  <label for="reason_moving">Reason for Moving</label>
+                  <input id="reason_moving" name="reason_moving" type="text" placeholder="">
+                </div>
+              </div>
+            </section>
+
+            <section class="application-form__section">
+              <h3 class="application-form__section-title">3. Prior Address (if less than 3 years at current)</h3>
+              <div class="application-form__section-content application-form__grid">
+                <div class="application-form__group application-form__group--full">
+                  <label for="prev_address">Previous Address</label>
+                  <input id="prev_address" name="prev_address" type="text">
+                </div>
+
+                <div class="application-form__group application-form__group--full">
+                  <label for="prev_landlord">Previous Landlord Name</label>
+                  <input id="prev_landlord" name="prev_landlord" type="text" placeholder="Name">
+                </div>
+
+                <div class="application-form__group application-form__group--full">
+                  <label for="prev_landlord">Previous Landlord Phone Number</label>
+                  <input id="prev_landlordnum" name="prev_landlordnum" type="text" placeholder="Phone Number">
+                </div>
+              </div>
+            </section>
+
+            <section class="application-form__section">
+              <h3 class="application-form__section-title">4. Employment &amp; Income</h3>
+              <div class="application-form__section-content application-form__grid">
+                <div class="application-form__group">
+                  <label for="employer">Current Employer</label>
+                  <input id="employer" name="employer" type="text" required>
+                </div>
+
+                <div class="application-form__group">
+                  <label for="position">Position / Title</label>
+                  <input id="position" name="position" type="text">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="start_date">Start Date</label>
+                  <input id="start_date" name="start_date" type="text" placeholder="MM/YYYY">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="income">Annual Income</label>
+                  <input id="income" name="annual_income" type="text" placeholder="$">
+                </div>
+
+                <div class="application-form__group application-form__group--full">
+                  <label for="employer_address">Employer Address</label>
+                  <input id="employer_address" name="employer_address" type="text">
+                </div>
+
+                <div class="application-form__group application-form__group--full">
+                  <label for="hr_contact">Supervisor / HR Contact</label>
+                  <input id="hr_contact" name="hr_contact" type="text">
+                </div>
+              </div>
+            </section>
+
+            <section class="application-form__section">
+              <h3 class="application-form__section-title">5. Guarantor (if applicable)</h3>
+              <div class="application-form__section-content application-form__grid">
+                <div class="application-form__group">
+                  <label for="guarantor_name">Guarantor Name</label>
+                  <input id="guarantor_name" name="guarantor_name" type="text">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="guarantor_relationship">Relationship</label>
+                  <input id="guarantor_relationship" name="guarantor_relationship" type="text">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="guarantor_phone">Guarantor Phone</label>
+                  <input id="guarantor_phone" name="guarantor_phone" type="tel">
+                </div>
+
+                <div class="application-form__group">
+                  <label for="guarantor_income">Guarantor Annual Income</label>
+                  <input id="guarantor_income" name="guarantor_income" type="text">
+                </div>
+              </div>
+            </section>
+
+            <section class="application-form__section">
+              <h3 class="application-form__section-title">6. Tenant History</h3>
+              <div class="application-form__section-content application-form__grid">
+                <div class="application-form__group">
+                  <label for="ever_evicted">Ever been evicted?</label>
+                  <select id="ever_evicted" name="ever_evicted">
+                    <option value="" disabled selected>Select</option>
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                </div>
+
+                <div class="application-form__group">
+                  <label for="broken_lease">Broken a lease?</label>
+                  <select id="broken_lease" name="broken_lease">
+                    <option value="" disabled selected>Select</option>
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                </div>
+
+                <div class="application-form__group">
+                  <label for="pets">Any pets?</label>
+                  <select id="pets" name="pets">
+                    <option value="" disabled selected>Select</option>
+                    <option>No</option>
+                    <option>Yes</option>
+                  </select>
+                </div>
+
+                <div class="application-form__group application-form__group--full">
+                  <label for="other_info">Anything else we should know?</label>
+                  <textarea id="other_info" name="other_info" rows="3"></textarea>
+                </div>
+              </div>
+            </section>
+
+     
+
+            <div class="application-form__footer">
+              <p class="application-form__consent">
+                By submitting this form, I certify that the information provided is
+                true and complete. I authorize the landlord/management to verify
+                employment, rental history, and to run credit/background checks as
+                permitted by law.
+              </p>
+
+              <button type="submit" class="button application-form__button">
+                Submit Application
+              </button>
+            </div>
+          </form>
+
+          <aside class="application-docs">
+            <h3 class="application-docs__title">Required Supporting Documents</h3>
+            <p class="application-docs__intro">
+              After submitting the application, we will follow up requesting the following items:
+            </p>
+            <ul class="application-docs__list">
+              <li>Government-issued ID (driver’s license or passport)</li>
+              <li>Last 3 pay stubs and/or W-2s / 1099s</li>
+              <li>Last 3 months of bank statements (For each bank account)</li>
+              <li>Statements from all savings / investment accounts</li>
+              <li>Guarantor documentation (if applicable)</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer section">
+    <div class="footer__container container">
+      <div class="footer__content">
+        <a href="index.html"><h3 class="footer__title">ZM Residences</h3></a>
+      </div>
+
+      <span class="footer__copy">
+        &#169; 2025 Eyny Management. All rights reserved.
+      </span>
+    </div>
+  </footer>
+
+  <a href="#" class="scrollup" id="scroll-up">
+    <i class="ri-arrow-up-line scrollup__icon"></i>
+  </a>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
